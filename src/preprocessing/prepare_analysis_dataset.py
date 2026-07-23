@@ -171,7 +171,14 @@ def extract_matches(text: str, patterns: dict[str, re.Pattern]) -> list[str]:
     return [name for name, pattern in patterns.items() if pattern.search(text)]
 
 
-def prepare_dataset(raw_path: Path) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
+def prepare_dataset(
+    raw_path: Path
+) -> tuple[
+    pd.DataFrame,
+    pd.DataFrame,
+    pd.DataFrame,
+    pd.DataFrame,
+]:
     df = load_jsonl(raw_path)
     df["_original_order"] = range(len(df))
 
