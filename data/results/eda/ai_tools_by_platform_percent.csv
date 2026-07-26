@@ -1,0 +1,6 @@
+platform,AI,AI agent,AI coding assistant,Aider,Artificial Intelligence,ChatGPT,Claude/Anthropic,Codeium,Cursor,DeepSeek,GPT,Gemini,Generative AI,GitHub Copilot,LLM,Llama,Mistral,OpenAI,Qwen
+GitHub Issues,21.64,2.11,0.53,0.0,0.26,2.9,14.51,0.26,3.69,1.32,7.12,0.79,0.0,27.7,4.49,3.69,1.32,4.22,3.43
+Hacker News,59.78,12.5,0.54,0.0,0.0,1.63,7.61,0.0,0.54,0.0,2.17,1.63,0.0,0.0,8.7,0.0,0.0,4.89,0.0
+Other social dataset,30.79,2.35,0.0,0.0,0.29,2.64,40.47,0.0,0.0,0.59,1.47,2.93,0.88,0.88,3.23,0.59,0.0,12.61,0.29
+Reddit,20.06,3.17,0.42,0.57,0.42,6.09,12.46,0.0,1.42,2.63,5.52,13.43,0.37,0.74,11.19,11.42,1.44,5.21,3.43
+Stack Overflow,40.0,1.38,0.0,0.0,0.0,6.21,9.66,0.0,10.34,0.0,2.76,3.45,1.38,14.48,6.9,0.0,0.69,2.07,0.69

@@ -1,0 +1,8 @@
+,score,score,score,score,num_comments,num_comments,num_comments,num_comments
+,count,mean,median,max,count,mean,median,max
+platform,,,,,,,,
+GitHub Issues,245,6.2,2.0,386.0,245,6.2,2.0,386.0
+Hacker News,140,11.51,2.0,514.0,140,6.63,0.0,404.0
+Other social dataset,0,,,,0,,,
+Reddit,2033,52.27,5.0,2523.0,164,7.6,0.5,233.0
+Stack Overflow,109,6.78,1.0,119.0,109,4.41,1.0,178.0

@@ -1,0 +1,6 @@
+platform,count,mean,median,min,max
+Reddit,2033,153.37,92.0,5,3023
+GitHub Issues,245,438.66,328.0,15,3484
+Hacker News,140,71.01,13.0,5,514
+Other social dataset,139,43.65,39.0,5,311
+Stack Overflow,109,287.39,207.0,48,3040

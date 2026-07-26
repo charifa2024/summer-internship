@@ -1,0 +1,9 @@
+check,value
+records,2666
+missing_record_ids,0
+duplicate_record_ids,0
+empty_basic_texts,0
+minimum_word_count,5
+missing_dates,139
+remaining_exact_duplicates,0
+ineligible_rows_in_final_data,0
