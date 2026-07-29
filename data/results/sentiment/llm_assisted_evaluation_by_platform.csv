@@ -1,0 +1,6 @@
+platform,reference_records,vader_reference_accuracy,transformer_reference_accuracy
+GitHub Issues,11,0.5454545454545454,0.18181818181818182
+Hacker News,9,0.5555555555555556,0.4444444444444444
+Other social dataset,4,0.25,0.5
+Reddit,116,0.5,0.5344827586206896
+Stack Overflow,7,0.2857142857142857,0.7142857142857143

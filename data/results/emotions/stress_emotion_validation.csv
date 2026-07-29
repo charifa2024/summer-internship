@@ -1,0 +1,8 @@
+check,value
+records,2666
+missing_stress_direction,0
+invalid_stress_direction,0
+missing_primary_emotion,0
+invalid_stress_intensity,0
+records_with_explicit_stress_signal,412
+records_with_relief_signal,3

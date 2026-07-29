@@ -1,0 +1,11 @@
+topic_name,Increased stress or distress,Mixed or ambiguous,No clear stress signal,Reduced stress or relief
+Agent / Open / Source,73,0,452,1
+Anthropic / Claude Anthropic / Anthropic Claude,20,0,227,0
+Claude / Sonnet / Opus,27,0,244,0
+Enabled / Disabled / Ms,9,0,42,0
+Gemini / Google / Flash,21,1,253,0
+Gemini Pro / Pro / Gemini,10,0,107,0
+Llama / Cpp / Llama Cpp,43,0,291,0
+Output Mismatch / Mismatch / List Output,1,0,16,0
+Removed / Engineering / Ml,8,0,60,0
+Ve / Don / Know,199,0,559,2

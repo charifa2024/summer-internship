@@ -1,0 +1,251 @@
+platform,rank,word,frequency
+GitHub Issues,1,code,627
+GitHub Issues,2,vscode,615
+GitHub Issues,3,version,518
+GitHub Issues,4,enabled,481
+GitHub Issues,5,copilot,428
+GitHub Issues,6,python,373
+GitHub Issues,7,chat,348
+GitHub Issues,8,agent,292
+GitHub Issues,9,output,292
+GitHub Issues,10,disabled,264
+GitHub Issues,11,error,254
+GitHub Issues,12,node,253
+GitHub Issues,13,github,251
+GitHub Issues,14,fix,242
+GitHub Issues,15,file,240
+GitHub Issues,16,torch,235
+GitHub Issues,17,server,232
+GitHub Issues,18,extension,225
+GitHub Issues,19,remote,218
+GitHub Issues,20,trace,188
+GitHub Issues,21,value,179
+GitHub Issues,22,cls,179
+GitHub Issues,23,type,177
+GitHub Issues,24,true,177
+GitHub Issues,25,device,167
+GitHub Issues,26,transformers,164
+GitHub Issues,27,gpu,163
+GitHub Issues,28,data,160
+GitHub Issues,29,session,156
+GitHub Issues,30,text,154
+GitHub Issues,31,list,153
+GitHub Issues,32,info,152
+GitHub Issues,33,bug,151
+GitHub Issues,34,extensions,144
+GitHub Issues,35,process,143
+GitHub Issues,36,test,143
+GitHub Issues,37,driver,141
+GitHub Issues,38,modules,141
+GitHub Issues,39,input,141
+GitHub Issues,40,import,141
+GitHub Issues,41,request,136
+GitHub Issues,42,module,134
+GitHub Issues,43,internal,134
+GitHub Issues,44,mismatch,134
+GitHub Issues,45,config,132
+GitHub Issues,46,false,131
+GitHub Issues,47,path,131
+GitHub Issues,48,content,129
+GitHub Issues,49,vendor,126
+GitHub Issues,50,windows,123
+Hacker News,1,agents,39
+Hacker News,2,agent,29
+Hacker News,3,claude,29
+Hacker News,4,browser,28
+Hacker News,5,built,25
+Hacker News,6,open,24
+Hacker News,7,build,22
+Hacker News,8,data,21
+Hacker News,9,code,20
+Hacker News,10,source,19
+Hacker News,11,running,17
+Hacker News,12,context,16
+Hacker News,13,know,16
+Hacker News,14,run,16
+Hacker News,15,game,15
+Hacker News,16,building,14
+Hacker News,17,app,14
+Hacker News,18,time,14
+Hacker News,19,tokens,13
+Hacker News,20,review,13
+Hacker News,21,help,13
+Hacker News,22,codex,13
+Hacker News,23,started,13
+Hacker News,24,harness,11
+Hacker News,25,small,11
+Hacker News,26,lot,11
+Hacker News,27,people,11
+Hacker News,28,different,11
+Hacker News,29,long,11
+Hacker News,30,sdk,10
+Hacker News,31,cost,10
+Hacker News,32,try,10
+Hacker News,33,feedback,10
+Hacker News,34,human,10
+Hacker News,35,security,10
+Hacker News,36,openai,10
+Hacker News,37,idea,10
+Hacker News,38,based,10
+Hacker News,39,love,9
+Hacker News,40,easy,9
+Hacker News,41,product,9
+Hacker News,42,token,9
+Hacker News,43,free,9
+Hacker News,44,face,9
+Hacker News,45,actually,9
+Hacker News,46,wanted,9
+Hacker News,47,audio,9
+Hacker News,48,design,9
+Hacker News,49,whisper,9
+Hacker News,50,live,8
+Other social dataset,1,anthropic,195
+Other social dataset,2,claude,130
+Other social dataset,3,openai,65
+Other social dataset,4,google,36
+Other social dataset,5,fable,33
+Other social dataset,6,code,23
+Other social dataset,7,news,21
+Other social dataset,8,claudeai,18
+Other social dataset,9,gpt,17
+Other social dataset,10,tech,16
+Other social dataset,11,mastodon,16
+Other social dataset,12,access,16
+Other social dataset,13,agent,15
+Other social dataset,14,gemini,15
+Other social dataset,15,max,14
+Other social dataset,16,technology,13
+Other social dataset,17,microsoft,13
+Other social dataset,18,meta,13
+Other social dataset,19,sol,13
+Other social dataset,20,utm,12
+Other social dataset,21,api,12
+Other social dataset,22,data,12
+Other social dataset,23,chatgpt,12
+Other social dataset,24,theguardian,12
+Other social dataset,25,research,11
+Other social dataset,26,artificialintelligence,11
+Other social dataset,27,status,11
+Other social dataset,28,statusupdate,11
+Other social dataset,29,agents,11
+Other social dataset,30,html,11
+Other social dataset,31,cost,11
+Other social dataset,32,component,10
+Other social dataset,33,analysis,10
+Other social dataset,34,report,10
+Other social dataset,35,org,10
+Other social dataset,36,threejs,10
+Other social dataset,37,vps,10
+Other social dataset,38,coding,9
+Other social dataset,39,web,9
+Other social dataset,40,frontier,9
+Other social dataset,41,index,9
+Other social dataset,42,ubuntu,9
+Other social dataset,43,source,8
+Other social dataset,44,fable5,8
+Other social dataset,45,teachers,8
+Other social dataset,46,beitraege,8
+Other social dataset,47,run,7
+Other social dataset,48,power,7
+Other social dataset,49,good,7
+Other social dataset,50,copyright,7
+Reddit,1,llama,857
+Reddit,2,gemini,705
+Reddit,3,code,681
+Reddit,4,claude,578
+Reddit,5,context,539
+Reddit,6,local,532
+Reddit,7,time,502
+Reddit,8,run,457
+Reddit,9,prompt,450
+Reddit,10,qwen3,419
+Reddit,11,gpt,403
+Reddit,12,data,401
+Reddit,13,cpp,398
+Reddit,14,open,395
+Reddit,15,think,392
+Reddit,16,don,386
+Reddit,17,better,374
+Reddit,18,know,371
+Reddit,19,want,360
+Reddit,20,tokens,357
+Reddit,21,gpu,355
+Reddit,22,chatgpt,353
+Reddit,23,need,330
+Reddit,24,server,326
+Reddit,25,people,325
+Reddit,26,good,321
+Reddit,27,text,317
+Reddit,28,agent,309
+Reddit,29,openai,300
+Reddit,30,google,299
+Reddit,31,coding,288
+Reddit,32,memory,285
+Reddit,33,help,284
+Reddit,34,reasoning,284
+Reddit,35,does,283
+Reddit,36,running,283
+Reddit,37,gguf,280
+Reddit,38,real,276
+Reddit,39,source,276
+Reddit,40,pro,272
+Reddit,41,size,263
+Reddit,42,tried,259
+Reddit,43,build,256
+Reddit,44,performance,252
+Reddit,45,qwen,242
+Reddit,46,thinking,241
+Reddit,47,human,240
+Reddit,48,api,240
+Reddit,49,chat,240
+Reddit,50,best,239
+Stack Overflow,1,code,203
+Stack Overflow,2,return,82
+Stack Overflow,3,import,76
+Stack Overflow,4,const,76
+Stack Overflow,5,text,75
+Stack Overflow,6,border,69
+Stack Overflow,7,android,69
+Stack Overflow,8,error,67
+Stack Overflow,9,function,65
+Stack Overflow,10,build,59
+Stack Overflow,11,copilot,59
+Stack Overflow,12,public,58
+Stack Overflow,13,studio,58
+Stack Overflow,14,data,57
+Stack Overflow,15,google,56
+Stack Overflow,16,value,55
+Stack Overflow,17,index,54
+Stack Overflow,18,status,53
+Stack Overflow,19,position,53
+Stack Overflow,20,context,52
+Stack Overflow,21,time,52
+Stack Overflow,22,version,50
+Stack Overflow,23,app,50
+Stack Overflow,24,want,46
+Stack Overflow,25,type,44
+Stack Overflow,26,project,44
+Stack Overflow,27,avg,44
+Stack Overflow,28,claude,42
+Stack Overflow,29,string,42
+Stack Overflow,30,width,42
+Stack Overflow,31,add,41
+Stack Overflow,32,height,41
+Stack Overflow,33,does,40
+Stack Overflow,34,run,40
+Stack Overflow,35,github,40
+Stack Overflow,36,create,39
+Stack Overflow,37,cursor,39
+Stack Overflow,38,content,39
+Stack Overflow,39,page,38
+Stack Overflow,40,response,38
+Stack Overflow,41,class,38
+Stack Overflow,42,void,38
+Stack Overflow,43,visual,38
+Stack Overflow,44,prompt,37
+Stack Overflow,45,var,36
+Stack Overflow,46,file,36
+Stack Overflow,47,tried,36
+Stack Overflow,48,problem,36
+Stack Overflow,49,message,36
+Stack Overflow,50,field,35

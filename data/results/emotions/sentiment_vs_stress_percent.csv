@@ -1,0 +1,4 @@
+selected_sentiment_label,Increased stress or distress,Mixed or ambiguous,No clear stress signal,Reduced stress or relief
+Negative,26.56,0.0,73.44,0.0
+Neutral,14.06,0.06,85.76,0.12
+Positive,9.01,0.0,90.78,0.21

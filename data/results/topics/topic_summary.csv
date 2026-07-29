@@ -1,0 +1,11 @@
+topic_id,topic_name,records,percentage,top_keywords,dominant_platform,dominant_sentiment,dominant_stress_direction,mean_topic_confidence
+0,Ve / Don / Know,760,28.51,"ve, don, know, think, people, want, time, better, need, right",Reddit,Neutral,No clear stress signal,0.6187
+1,Gemini Pro / Pro / Gemini,117,4.39,"gemini pro, pro, gemini, preview, 06, 05, pro preview, 05 06, update, discount",Reddit,Neutral,No clear stress signal,0.6999
+2,Enabled / Disabled / Ms,51,1.91,"enabled, disabled, ms, cp, cls, vscode, cp cls, version, driver, vendor",GitHub Issues,Neutral,No clear stress signal,0.8502
+3,Anthropic / Claude Anthropic / Anthropic Claude,247,9.26,"anthropic, claude anthropic, anthropic claude, billion, google, frontier, fable, claude, 2026, tech",Reddit,Neutral,No clear stress signal,0.7048
+4,Llama / Cpp / Llama Cpp,334,12.53,"llama, cpp, llama cpp, gguf, qwen3, gpu, ollama, run, support, running",Reddit,Neutral,No clear stress signal,0.6658
+5,Claude / Sonnet / Opus,271,10.17,"claude, sonnet, opus, claude sonnet, claude opus, glm, claudeai anthropic, claudeai, codex, anthropic statusupdate",Reddit,Neutral,No clear stress signal,0.6261
+6,Output Mismatch / Mismatch / List Output,17,0.64,"output mismatch, mismatch, list output, output differs, mismatch list, differs, serge, output, fix, tensor values",GitHub Issues,Neutral,No clear stress signal,0.7775
+7,Agent / Open / Source,526,19.73,"agent, open, source, copilot, open source, chat, agents, version, vs, mcp",Reddit,Neutral,No clear stress signal,0.5888
+8,Gemini / Google / Flash,275,10.32,"gemini, google, flash, gemini flash, google gemini, image, nano, banana, gemini cli, nano banana",Reddit,Neutral,No clear stress signal,0.6709
+9,Removed / Engineering / Ml,68,2.55,"removed, engineering, ml, learn, builder, guess, data, portfolio, transition, generated",Reddit,Neutral,No clear stress signal,0.8409

@@ -1,0 +1,6 @@
+finding,value
+Analyzed records,"2,666"
+Records with explicit stress or mixed signal,412 (15.45%)
+Most frequent stress direction,"No clear stress signal (2,251 records; 84.43%)"
+Most frequent primary emotion,"No clear emotion (2,251 records; 84.43%)"
+Sentiment context used,Transformer

@@ -1,0 +1,7 @@
+check,value
+records,2666.0
+missing_vader_labels,0.0
+invalid_vader_labels,0.0
+missing_vader_scores,0.0
+minimum_compound_score,-0.9981
+maximum_compound_score,0.9999

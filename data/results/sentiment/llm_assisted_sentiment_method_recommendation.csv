@@ -1,0 +1,2 @@
+recommended_primary_method,macro_f1,reference_accuracy,decision_basis,warning
+Transformer,0.5099,0.5102,Higher macro F1 against the LLM-assisted reference annotations,The reference labels are LLM-assisted and are not independently verified human ground truth.

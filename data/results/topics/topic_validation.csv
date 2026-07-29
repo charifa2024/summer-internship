@@ -1,0 +1,8 @@
+check,value
+records,2666.0
+selected_number_of_topics,10.0
+missing_topic_ids,0.0
+missing_topic_names,0.0
+minimum_topic_confidence,0.0
+maximum_topic_confidence,1.0
+low_confidence_assignments,124.0

@@ -1,0 +1,11 @@
+topic_name,Negative,Neutral,Positive
+Agent / Open / Source,13.12,73.0,13.88
+Anthropic / Claude Anthropic / Anthropic Claude,19.84,67.21,12.96
+Claude / Sonnet / Opus,15.87,59.04,25.09
+Enabled / Disabled / Ms,25.49,70.59,3.92
+Gemini / Google / Flash,14.55,61.09,24.36
+Gemini Pro / Pro / Gemini,10.26,69.23,20.51
+Llama / Cpp / Llama Cpp,15.27,60.78,23.95
+Output Mismatch / Mismatch / List Output,17.65,82.35,0.0
+Removed / Engineering / Ml,16.18,75.0,8.82
+Ve / Don / Know,25.13,58.42,16.45

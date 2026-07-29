@@ -2,85 +2,87 @@
 
 ## Project Overview
 
-This project analyzes how software developers perceive modern Artificial
-Intelligence tools and AI coding assistants.
+This project analyzes how software developers perceive modern artificial
+intelligence tools and AI coding assistants in public online discussions.
 
-The study focuses on discussions related to tools and technologies such as:
+The study focuses on tools and technologies such as ChatGPT, OpenAI, GitHub
+Copilot, Cursor, Claude, Gemini, DeepSeek, large language models, generative AI,
+and AI agents.
 
-- ChatGPT
-- OpenAI
-- GitHub Copilot
-- Cursor
-- Claude
-- Gemini
-- DeepSeek
-- Large Language Models
-- Generative AI
-- AI agents
-
-The objective is to build a complete and reproducible Data Science and Natural
-Language Processing pipeline that can identify:
+The project implements a complete Data Science and Natural Language Processing
+pipeline to identify:
 
 - positive, neutral, and negative sentiment;
+- stress, anxiety, frustration, burnout, and relief signals;
 - productivity-related perceptions;
-- stress, anxiety, and burnout signals;
 - job-security concerns;
-- trust and reliability concerns;
-- privacy and security concerns;
+- trust, reliability, privacy, and security concerns;
 - major discussion topics;
-- differences between platforms and over time.
+- differences across platforms, AI tools, and time.
+
+The dashboard and analytical outputs describe patterns in public developer
+discussions. They do not provide clinical, psychological, or causal diagnoses.
 
 ---
 
-## Current Project Status
+## Project Status
 
 | Phase | Status |
 |---|---|
 | Problem definition | Completed |
+| Benchmark and state of the art | Completed |
 | Data collection | Completed |
 | Data understanding | Completed |
-| Data cleaning | Completed |
-| Text preprocessing | Completed |
-| Exploratory Data Analysis | Next |
-| Sentiment analysis | Planned |
-| Topic modeling | Planned |
-| Dashboard | Planned |
-| Final report | In progress |
+| Data cleaning and preprocessing | Completed |
+| Exploratory Data Analysis | Completed |
+| VADER sentiment analysis | Completed |
+| Transformer sentiment analysis | Completed |
+| LLM-assisted reference evaluation | Completed |
+| Stress and emotion analysis | Completed |
+| Topic modeling | Completed |
+| Automated tests | Completed — 4 tests passed |
+| Streamlit dashboard | Completed and locally functional |
+| Technical documentation | In progress |
+| Public deployment | Pending |
 
-The current official analysis-ready dataset contains approximately **2,666
-records** selected from an initial multi-source dataset of **5,406 records**.
+The official analysis-ready dataset contains approximately **2,666 records**
+selected from an initial multi-source dataset of **5,406 records**.
 
 ---
 
-## Project Pipeline
+## Analytical Pipeline
 
 ```text
-1. Problem Definition
+Public social data
         ↓
-2. Data Collection
+Data collection and source documentation
         ↓
-3. Data Understanding
+Data understanding and quality audit
         ↓
-4. Data Cleaning
+Cleaning, normalization, relevance filtering, and deduplication
         ↓
-5. Text Preprocessing
+Exploratory Data Analysis
         ↓
-6. Exploratory Data Analysis
+Sentiment analysis: VADER and Transformer
         ↓
-7. Sentiment Analysis
+LLM-assisted reference evaluation
         ↓
-8. Topic Modeling
+Stress and emotion signal analysis
         ↓
-9. Dashboard and Visualization
+TF-IDF and NMF topic modeling
         ↓
-10. Final Report
+Result tables and figures
+        ↓
+Interactive Streamlit and Plotly dashboard
+        ↓
+Interpretation, limitations, and recommendations
 ```
 
 ---
 
 ## Data Sources
 
-The raw dataset combines several public sources.
+The raw dataset combines several documented public sources.
 
 | Source | Platform | Records |
 |---|---|---:|
@@ -92,237 +94,115 @@ The raw dataset combines several public sources.
 | Stack Overflow | Stack Overflow | 1,108 |
 | **Total** |  | **5,406** |
 
-The official raw dataset is:
+Official raw dataset:
 
 ```text
 data/raw/combined_reddit_posts.jsonl
 ```
 
-The official processed dataset is:
+Official processed dataset:
 
 ```text
 data/processed/analysis_ready_posts.jsonl
 ```
 
+Data-source inventory:
+
+```text
+data/raw/data_sources_inventory.csv
+```
+
+The data consist of public posts and publicly available datasets. The project
+does not attempt to identify individual users and reports aggregated patterns.
+
 ---
 
-## Project Structure
+## Repository Structure
 
 ```text
 AI-Developer-Sentiment/
 ├── dashboard/
-│   └── # Streamlit dashboard files will be added here
-│
+│   ├── app.py
+│   ├── README.md
+│   └── requirements.txt
 ├── data/
 │   ├── raw/
-│   │   ├── combined_reddit_posts.jsonl
-│   │   ├── data_sources_inventory.csv
-│   │   ├── divde_sentiment_posts.jsonl
-│   │   ├── github_posts.jsonl
-│   │   ├── hn_posts.jsonl
-│   │   ├── huggingface_reddit_posts.jsonl
-│   │   ├── posts.jsonl
-│   │   └── stackoverflow_posts.jsonl
-│   │
-│   └── processed/
-│       ├── analysis_ready_posts.jsonl
-│       ├── data_quality_summary.csv
-│       └── excluded_low_relevance_posts.jsonl
-│
+│   ├── processed/
+│   └── results/
+│       ├── eda/
+│       ├── sentiment/
+│       ├── emotions/
+│       └── topics/
 ├── docs/
-│   ├── 01_problem_definition.md
-│   ├── 02_data_collection.md
-│   └── 03_data_cleaning_and_preprocessing.md
-│
 ├── figures/
-│   ├── ai_tool_mentions.png
-│   ├── posts_by_platform.png
-│   ├── posts_over_time.png
-│   └── text_length_distribution.png
-│
+│   ├── eda/
+│   ├── sentiment/
+│   ├── emotions/
+│   └── topics/
 ├── notebooks/
 │   ├── 02_data_understanding.ipynb
 │   ├── 03_data_cleaning_and_preprocessing.ipynb
+│   ├── 04_eda.ipynb
+│   ├── 05_sentiment_analysis_vader.ipynb
+│   ├── 05_sentiment_analysis_transformer.ipynb
+│   ├── 05_sentiment_llm_assisted_validation.ipynb
+│   ├── 06_stress_and_emotion_analysis.ipynb
+│   ├── 07_topic_modeling.ipynb
 │   └── archive/
-│       ├── 02_data_inspection.ipynb
-│       └── 02_data_quality_and_cleaning_fixed.ipynb
-│
 ├── presentation/
-│   ├── Pipeline-Data-Science.pptx
-│   └── Presentation_Pipeline_AI_Developer_Sentiment_Minimaliste.pptx
-│
 ├── report/
-│   ├── benchmark_art.pdf
-│   └── pipeline_Documentation.pdf
-│
 ├── src/
 │   ├── collectors/
-│   │   ├── github_collector.py
-│   │   ├── hn_collector.py
-│   │   ├── reddit_public_collector.py
-│   │   └── stackoverflow_collector.py
-│   │
 │   └── preprocessing/
 │       └── prepare_analysis_dataset.py
-│
+├── tests/
+│   └── test_prepare_analysis_dataset.py
+├── logs/
+│   └── dashboard.log
 ├── README.md
 ├── requirements.txt
 └── .gitignore
 ```
 
----
-
-## Data Collection
-
-The project uses reusable Python scripts rather than a collection notebook.
-
-### Reddit
-
-Reddit collection was initially attempted through public Reddit endpoints.
-These requests returned HTTP 403 errors.
-
-An official Reddit API access request was submitted, but no response was
-received during the collection period.
-
-Alternative collection methods were then tested:
-
-- PullPush;
-- Arctic Shift;
-- documented Hugging Face datasets.
-
-The final Reddit component combines Arctic Shift and public Hugging Face data.
-
-### GitHub Issues
-
-GitHub Issues were collected from several popular software repositories using
-the GitHub REST API.
-
-### Hacker News
-
-Hacker News stories were collected through the public Firebase API.
-
-### Stack Overflow
-
-Stack Overflow questions were collected through the Stack Exchange API.
-
-The collection scripts are stored in:
-
-```text
-src/collectors/
-```
-
----
-
-## Data Understanding
-
-The notebook:
-
-```text
-notebooks/02_data_understanding.ipynb
-```
-
-inspects the raw dataset without modifying it.
-
-It examines:
-
-- number of rows and columns;
-- available fields;
-- missing values;
-- platform distribution;
-- missing identifiers;
-- empty and very short texts;
-- exact text duplicates;
-- date coverage;
-- text lengths;
-- AI-tool mentions.
-
-The notebook is used only for inspection and documentation.
-
----
-
-## Data Cleaning and Text Preprocessing
-
-The main cleaning script is:
-
-```text
-src/preprocessing/prepare_analysis_dataset.py
-```
-
-The script:
-
-- preserves the original text;
-- creates standardized text fields;
-- removes URLs and HTML tags;
-- creates lightly cleaned and lexical text versions;
-- standardizes identifiers;
-- standardizes platforms;
-- standardizes date fields;
-- detects AI-related records using word-boundary rules;
-- detects research-theme signals;
-- detects exact text duplicates;
-- excludes records with fewer than five words;
-- exports the analysis-ready dataset.
-
-### Main Processed Columns
-
-| Column | Description |
-|---|---|
-| `record_id` | Unique source-qualified identifier |
-| `source` | Original data source |
-| `platform` | Standardized platform |
-| `created_at_utc` | Standardized date |
-| `full_text_raw` | Preserved title and body |
-| `text_clean_basic` | Light cleaning for sentiment models |
-| `text_clean_lexical` | Lowercase lexical version for TF-IDF and topics |
-| `ai_tools` | Detected AI tools |
-| `is_ai_relevant` | AI relevance indicator |
-| `research_themes` | Detected descriptive themes |
-| `word_count` | Number of words |
-| `analysis_eligible` | Final eligibility decision |
-
-### Main Output Files
-
-```text
-data/processed/analysis_ready_posts.jsonl
-data/processed/excluded_low_relevance_posts.jsonl
-data/processed/data_quality_summary.csv
-```
+The `logs/` folder is created automatically when the dashboard starts.
 
 ---
 
 ## Installation
 
-### 1. Create a virtual environment
-
-```bash
-python3 -m venv .venv
-```
-
-### 2. Activate the environment
+### 1. Create and activate a virtual environment
 
 Linux or macOS:
 
 ```bash
+python3 -m venv .venv
 source .venv/bin/activate
 ```
 
 Windows PowerShell:
 
 ```powershell
+python -m venv .venv
 .venv\Scripts\Activate.ps1
 ```
 
-### 3. Install dependencies
+### 2. Install dependencies
+
+Run from the project root:
 
 ```bash
-pip install -r requirements.txt
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
 ```
+
+Main dependencies include Pandas, NumPy, Matplotlib, Seaborn, Scikit-learn,
+NLTK, Transformers, PyTorch, WordCloud, Plotly, Streamlit, Pytest, and Jupyter.
 
 ---
 
-## Reproducing the Cleaning Process
+## Reproducing the Processed Dataset
 
-Run the following command from the project root:
+Run from the project root:
 
 ```bash
 python src/preprocessing/prepare_analysis_dataset.py \
@@ -338,9 +218,14 @@ data/processed/excluded_low_relevance_posts.jsonl
 data/processed/data_quality_summary.csv
 ```
 
+The preprocessing script preserves original text, standardizes fields,
+removes URLs and HTML markup, normalizes dates and identifiers, detects AI
+relevance and predefined themes, identifies exact duplicates, excludes records
+with fewer than five words, and generates a reproducible quality summary.
+
 ---
 
-## Running the Notebooks
+## Notebook Execution Order
 
 Start Jupyter from the project root:
 
@@ -348,134 +233,249 @@ Start Jupyter from the project root:
 jupyter notebook
 ```
 
-Then open:
+Run the notebooks in this order:
 
 ```text
-notebooks/02_data_understanding.ipynb
-notebooks/03_data_cleaning_and_preprocessing.ipynb
+1. notebooks/02_data_understanding.ipynb
+2. notebooks/03_data_cleaning_and_preprocessing.ipynb
+3. notebooks/04_eda.ipynb
+4. notebooks/05_sentiment_analysis_vader.ipynb
+5. notebooks/05_sentiment_analysis_transformer.ipynb
+6. notebooks/05_sentiment_llm_assisted_validation.ipynb
+7. notebooks/06_stress_and_emotion_analysis.ipynb
+8. notebooks/07_topic_modeling.ipynb
 ```
 
-The notebooks should be executed from top to bottom.
+Each notebook should be executed from top to bottom from the project root so
+that relative file paths resolve correctly.
 
 ---
 
-## Figures
+## Exploratory Data Analysis
 
-Current figures include:
+The EDA notebook covers:
 
-- number of posts by platform;
-- text-length distribution;
+- records by source, platform, and community;
+- meaningful word frequencies;
+- overall and platform word clouds;
+- text-length distributions;
 - AI-tool mentions;
-- number of posts over time.
+- predefined research themes;
+- temporal discussion volume;
+- cross-platform comparisons;
+- representative examples;
+- coverage and methodological limitations.
 
-The figures are stored in:
+Main outputs are stored in:
 
 ```text
-figures/
+data/results/eda/
+figures/eda/
 ```
 
-These initial figures describe the dataset. More complete EDA figures will be
-added during the next project phase.
+Important outputs include:
+
+```text
+data/results/eda/word_frequency.csv
+data/results/eda/word_frequency_by_platform.csv
+data/results/eda/word_frequency_by_community.csv
+figures/eda/word_frequency_top25.png
+figures/eda/wordcloud_overall.png
+```
 
 ---
 
-## Documentation
+## Sentiment Analysis
 
-Technical documentation is stored in:
+Two sentiment methods are compared.
+
+### VADER
+
+VADER is a lexicon-based baseline for social-media text. It produces positive,
+neutral, negative, and compound scores.
+
+### Transformer
+
+A pretrained Transformer sentiment model produces contextual sentiment labels
+and confidence values.
+
+The comparison includes distributions, platform and AI-tool comparisons,
+time trends, model agreement and disagreement, and evaluation against an
+LLM-assisted reference sample.
+
+The LLM-assisted labels are provisional analytical references, not independent
+human-annotated ground truth.
+
+Outputs are stored in:
 
 ```text
-docs/
+data/results/sentiment/
+figures/sentiment/
 ```
-
-Current documents:
-
-- `01_problem_definition.md`
-- `02_data_collection.md`
-- `03_data_cleaning_and_preprocessing.md`
-
-Additional documentation will be created for:
-
-- Exploratory Data Analysis;
-- sentiment analysis;
-- topic modeling;
-- dashboard usage;
-- testing and validation.
 
 ---
 
-## Reports and Presentations
+## Stress and Emotion Analysis
 
-Current project reports are stored in:
+An explainable rule-based baseline identifies textual signals associated with:
+
+- increased stress or distress;
+- reduced stress or relief;
+- mixed or ambiguous signals;
+- anxiety;
+- frustration;
+- burnout or exhaustion;
+- job insecurity or fear;
+- distrust or uncertainty.
+
+Negative sentiment is not automatically treated as stress.
+
+Outputs are stored in:
 
 ```text
-report/
+data/results/emotions/
+figures/emotions/
 ```
 
-Current presentations are stored in:
-
-```text
-presentation/
-```
-
-They include:
-
-- pipeline documentation;
-- state-of-the-art or benchmark material;
-- project pipeline presentation.
+This component describes textual patterns and does not perform clinical
+diagnosis.
 
 ---
 
-## Next Steps
+## Topic Modeling
 
-The next technical phase is **Exploratory Data Analysis**.
+Topic modeling uses TF-IDF features and Non-negative Matrix Factorization.
+Several candidate topic counts are compared using reconstruction error and
+topic-diversity indicators. The outputs include topic keywords, representative
+documents, and topic distributions by platform, AI tool, sentiment, stress,
+and time.
 
-The planned work includes:
+Automatic topic names are provisional and should be interpreted with the
+keywords and representative documents.
 
-1. Validate the processed dataset.
-2. Analyze records by platform and source.
-3. Analyze text length.
-4. Analyze AI-tool mentions.
-5. Analyze predefined research themes.
-6. Analyze temporal trends.
-7. Select representative records.
-8. Save figures and interpretation.
-9. Document the EDA phase.
-10. Continue with sentiment analysis.
+Outputs are stored in:
+
+```text
+data/results/topics/
+figures/topics/
+```
 
 ---
 
-## Known Limitations
+## Automated Tests
+
+Run from the project root:
+
+```bash
+python -m pytest tests/test_prepare_analysis_dataset.py -v
+```
+
+The test suite contains four scenarios:
+
+1. **Nominal:** a valid AI-related Reddit post is processed successfully.
+2. **Boundary:** a valid post without an original ID or date is handled without
+   crashing.
+3. **Anomaly:** an exact normalized-text duplicate is detected and excluded.
+4. **Error:** malformed JSON raises a clear error containing the line number.
+
+Latest verified result:
+
+```text
+4 passed in 0.88s
+```
+
+---
+
+## Running the Dashboard
+
+From the project root:
+
+```bash
+python -m streamlit run dashboard/app.py
+```
+
+The dashboard includes:
+
+- filters by platform, sentiment, stress direction, topic, AI tool, and date;
+- dataset indicators;
+- sentiment distributions;
+- stress and emotion signals;
+- topics and topic keywords;
+- trends over time;
+- representative examples;
+- an automatic synthesis of the selected data;
+- cautious recommendations;
+- a searchable data explorer;
+- CSV export;
+- missing-data and empty-filter warnings.
+
+Dashboard activity and loading errors are written to:
+
+```text
+logs/dashboard.log
+```
+
+The dashboard currently runs locally. A public deployment URL has not yet been
+documented.
+
+---
+
+## Methodological and Ethical Limitations
 
 - The dataset does not represent all software developers.
-- The platforms use different sampling methods.
+- Platforms have different user populations and sampling methods.
 - Platform sizes are imbalanced.
+- Public posts may contain sarcasm, irony, slang, and ambiguous language.
 - Some records have missing dates or metadata.
 - Keyword rules may miss unusual AI-tool spellings.
 - Exact duplicate detection does not identify paraphrases.
-- Technical error messages may be difficult for generic sentiment models.
-- Public posts may contain sarcasm or ambiguous language.
-- Theme detection is currently rule-based and descriptive.
-
-These limitations will be reported in the final analysis.
+- Generic sentiment models may misinterpret technical error messages.
+- Stress and emotion labels are descriptive signals, not clinical assessments.
+- LLM-assisted validation is not independent expert annotation.
+- Topic names are provisional interpretations of model factors.
+- Temporal peaks may reflect collection coverage as well as genuine interest.
+- Word clouds are descriptive and should not replace exact frequency tables.
+- Observational social-media data do not establish causality.
+- Findings should not be generalized to all developers or organizations.
 
 ---
 
-## Repository Cleanup Notes
+## Demonstration Workflow
 
-The following files should not be committed to Git:
+1. Activate the virtual environment.
+2. Run the automated tests.
+3. Launch the Streamlit dashboard.
+4. Show the overview and filters.
+5. Compare sentiment across platforms.
+6. Inspect stress and emotion patterns.
+7. Inspect topic keywords and representative examples.
+8. Show trends over time.
+9. Explain the main limitations and recommendations.
+
+---
+
+## Repository Cleanup
+
+The following files should not be committed:
 
 ```text
+.venv/
 __pycache__/
 *.pyc
-.venv/
 .ipynb_checkpoints/
+.pytest_cache/
 ```
 
-Temporary files such as `_test.jsonl` should be removed after validation.
+Temporary files such as `_test.jsonl` should be deleted before submission.
+Archived notebooks should remain inside `notebooks/archive/`.
 
-Older outputs such as `combined_posts_cleaned.jsonl` should remain archived or
-be removed once `analysis_ready_posts.jsonl` is confirmed as the official
-processed dataset.
+The active validation workflow should use:
+
+```text
+notebooks/05_sentiment_llm_assisted_validation.ipynb
+```
+
+rather than an older manual-validation notebook.
 
 ---
 

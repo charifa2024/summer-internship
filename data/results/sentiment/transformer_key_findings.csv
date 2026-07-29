@@ -1,0 +1,7 @@
+finding,value
+Model,cardiffnlp/twitter-roberta-base-sentiment-latest
+Analyzed records,"2,666"
+Most frequent Transformer label,Neutral
+Mean confidence,0.7263
+Truncated records,371
+VADER–Transformer agreement,37.62%

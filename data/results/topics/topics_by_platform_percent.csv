@@ -1,0 +1,6 @@
+platform,Agent / Open / Source,Anthropic / Claude Anthropic / Anthropic Claude,Claude / Sonnet / Opus,Enabled / Disabled / Ms,Gemini / Google / Flash,Gemini Pro / Pro / Gemini,Llama / Cpp / Llama Cpp,Output Mismatch / Mismatch / List Output,Removed / Engineering / Ml,Ve / Don / Know
+GitHub Issues,71.84,0.0,0.0,18.37,0.0,0.0,1.63,4.9,0.0,3.27
+Hacker News,41.43,10.0,3.57,0.71,2.86,0.0,2.86,0.71,2.14,35.71
+Other social dataset,0.72,77.7,18.71,0.0,2.16,0.72,0.0,0.0,0.0,0.0
+Reddit,11.07,6.15,11.51,0.25,13.03,5.66,16.04,0.2,3.15,32.96
+Stack Overflow,60.55,0.0,5.5,0.0,2.75,0.92,0.0,0.0,0.92,29.36

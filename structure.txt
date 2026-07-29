@@ -1,0 +1,226 @@
+.
+├── 08_dashboard_and_final_reporting_bundle.zip
+├── dashboard
+│   ├── app.py
+│   ├── README.md
+│   └── requirements.txt
+├── data
+│   ├── processed
+│   │   ├── analysis_ready_posts.jsonl
+│   │   ├── combined_posts_cleaned.jsonl
+│   │   ├── data_quality_summary.csv
+│   │   ├── excluded_low_relevance_posts.jsonl
+│   │   └── _test.jsonl
+│   ├── raw
+│   │   ├── combined_reddit_posts.jsonl
+│   │   ├── data_sources_inventory.csv
+│   │   ├── divde_sentiment_posts.jsonl
+│   │   ├── github_posts.jsonl
+│   │   ├── hn_posts.jsonl
+│   │   ├── huggingface_reddit_posts.jsonl
+│   │   ├── posts.jsonl
+│   │   └── stackoverflow_posts.jsonl
+│   └── results
+│       ├── eda
+│       │   ├── ai_tool_counts.csv
+│       │   ├── ai_tools_by_platform_counts.csv
+│       │   ├── ai_tools_by_platform_percent.csv
+│       │   ├── date_coverage.csv
+│       │   ├── eda_key_findings.csv
+│       │   ├── eda_overview.csv
+│       │   ├── engagement_by_platform.csv
+│       │   ├── monthly_record_counts.csv
+│       │   ├── platform_summary.csv
+│       │   ├── research_theme_counts.csv
+│       │   ├── source_summary.csv
+│       │   ├── text_length_by_platform.csv
+│       │   ├── text_length_summary.csv
+│       │   ├── themes_by_platform_counts.csv
+│       │   ├── themes_by_platform_percent.csv
+│       │   ├── top_communities.csv
+│       │   ├── top_tools_over_time.csv
+│       │   └── validation_summary.csv
+│       ├── emotions
+│       │   ├── primary_emotion_distribution.csv
+│       │   ├── sentiment_vs_stress_counts.csv
+│       │   ├── sentiment_vs_stress_percent.csv
+│       │   ├── stress_by_ai_tool_counts.csv
+│       │   ├── stress_by_ai_tool_percent.csv
+│       │   ├── stress_by_platform_counts.csv
+│       │   ├── stress_by_platform_percent.csv
+│       │   ├── stress_cause_distribution.csv
+│       │   ├── stress_direction_distribution.csv
+│       │   ├── stress_emotion_key_findings.csv
+│       │   ├── stress_emotion_predictions.csv
+│       │   ├── stress_emotion_predictions.jsonl
+│       │   ├── stress_emotion_review_sample.csv
+│       │   ├── stress_emotion_validation.csv
+│       │   ├── stress_intensity_distribution.csv
+│       │   ├── stress_over_time_counts.csv
+│       │   └── stress_over_time_percent.csv
+│       ├── sentiment
+│       │   ├── both_methods_wrong.csv
+│       │   ├── llm_assisted_evaluation_by_platform.csv
+│       │   ├── llm_assisted_method_evaluation.csv
+│       │   ├── llm_assisted_sentiment_method_recommendation.csv
+│       │   ├── llm_assisted_validation_reviewed.csv
+│       │   ├── llm_assisted_validation_sample.csv
+│       │   ├── llm_assisted_validation_sample_with_transformer.csv
+│       │   ├── manual_validation_sample.csv
+│       │   ├── manual_validation_sample_with_transformer.csv
+│       │   ├── method_agreement_summary.csv
+│       │   ├── method_comparison.csv
+│       │   ├── method_disagreement_examples.csv
+│       │   ├── reference_label_distribution.csv
+│       │   ├── sentiment_predictions.csv
+│       │   ├── sentiment_predictions.jsonl
+│       │   ├── transformer_by_ai_tool_counts.csv
+│       │   ├── transformer_by_ai_tool_percent.csv
+│       │   ├── transformer_by_platform_counts.csv
+│       │   ├── transformer_by_platform_percent.csv
+│       │   ├── transformer_checkpoint.csv
+│       │   ├── transformer_distribution.csv
+│       │   ├── transformer_key_findings.csv
+│       │   ├── transformer_llm_reference_classification_report.csv
+│       │   ├── transformer_llm_reference_errors.csv
+│       │   ├── transformer_only_correct.csv
+│       │   ├── transformer_over_time_counts.csv
+│       │   ├── transformer_over_time_percent.csv
+│       │   ├── transformer_truncation_summary.csv
+│       │   ├── transformer_validation.csv
+│       │   ├── vader_by_ai_tool_counts.csv
+│       │   ├── vader_by_ai_tool_percent.csv
+│       │   ├── vader_by_platform_counts.csv
+│       │   ├── vader_by_platform_percent.csv
+│       │   ├── vader_distribution.csv
+│       │   ├── vader_key_findings.csv
+│       │   ├── vader_llm_reference_classification_report.csv
+│       │   ├── vader_llm_reference_errors.csv
+│       │   ├── vader_only_correct.csv
+│       │   ├── vader_over_time_counts.csv
+│       │   ├── vader_over_time_percent.csv
+│       │   ├── vader_predictions.csv
+│       │   ├── vader_predictions.jsonl
+│       │   └── vader_validation.csv
+│       └── topics
+│           ├── emotion_by_topic_counts.csv
+│           ├── emotion_by_topic_percent.csv
+│           ├── low_confidence_topic_assignments.csv
+│           ├── provisional_topic_names.csv
+│           ├── sentiment_by_topic_counts.csv
+│           ├── sentiment_by_topic_percent.csv
+│           ├── stress_by_topic_counts.csv
+│           ├── stress_by_topic_percent.csv
+│           ├── top_global_tfidf_features.csv
+│           ├── topic_assignments.csv
+│           ├── topic_assignments.jsonl
+│           ├── topic_count_evaluation.csv
+│           ├── topic_distribution.csv
+│           ├── topic_keywords.csv
+│           ├── topic_modeling_key_findings.csv
+│           ├── topic_representative_documents.csv
+│           ├── topics_by_ai_tool_counts.csv
+│           ├── topics_by_ai_tool_percent.csv
+│           ├── topics_by_platform_counts.csv
+│           ├── topics_by_platform_percent.csv
+│           ├── topics_over_time_counts.csv
+│           ├── topics_over_time_percent.csv
+│           ├── topic_summary.csv
+│           └── topic_validation.csv
+├── docs
+│   ├── 01_problem_definition.md
+│   ├── 02_data_collection.md
+│   ├── 03_data_cleaning_and_preprocessing.md
+│   ├── 04_exploratory_data_analysis.md
+│   ├── 06_stress_and_emotion_analysis.md
+│   ├── 07_topic_modeling.md
+│   ├── 08_dashboard_and_final_reporting.md
+│   └── final_report_template.md
+├── figures
+│   ├── ai_tool_mentions.png
+│   ├── eda
+│   │   ├── ai_tool_frequencies.png
+│   │   ├── ai_tools_by_platform.png
+│   │   ├── records_by_platform.png
+│   │   ├── records_by_source.png
+│   │   ├── records_over_time.png
+│   │   ├── research_theme_frequencies.png
+│   │   ├── text_length_by_platform.png
+│   │   ├── text_length_distribution.png
+│   │   ├── themes_by_platform.png
+│   │   └── top_tools_over_time.png
+│   ├── emotions
+│   │   ├── primary_emotion_distribution.png
+│   │   ├── stress_by_ai_tool.png
+│   │   ├── stress_by_platform.png
+│   │   ├── stress_cause_distribution.png
+│   │   ├── stress_direction_distribution.png
+│   │   ├── stress_intensity_distribution.png
+│   │   └── stress_over_time.png
+│   ├── posts_by_platform.png
+│   ├── posts_over_time.png
+│   ├── sentiment
+│   │   ├── llm_assisted_method_comparison.png
+│   │   ├── method_agreement_matrix.png
+│   │   ├── reference_label_distribution.png
+│   │   ├── transformer_confidence_distribution.png
+│   │   ├── transformer_llm_reference_confusion_matrix.png
+│   │   ├── transformer_sentiment_by_ai_tool.png
+│   │   ├── transformer_sentiment_by_platform.png
+│   │   ├── transformer_sentiment_distribution.png
+│   │   ├── transformer_sentiment_over_time.png
+│   │   ├── vader_compound_distribution.png
+│   │   ├── vader_llm_reference_confusion_matrix.png
+│   │   ├── vader_sentiment_by_ai_tool.png
+│   │   ├── vader_sentiment_by_platform.png
+│   │   ├── vader_sentiment_distribution.png
+│   │   └── vader_sentiment_over_time.png
+│   ├── text_length_distribution.png
+│   └── topics
+│       ├── sentiment_by_topic.png
+│       ├── stress_by_topic.png
+│       ├── topic_count_combined_score.png
+│       ├── topic_count_diversity.png
+│       ├── topic_count_reconstruction_error.png
+│       ├── topic_distribution.png
+│       ├── topics_by_ai_tool.png
+│       ├── topics_by_platform.png
+│       └── topics_over_time.png
+├── notebooks
+│   ├── 02_data_understanding.ipynb
+│   ├── 03_data_cleaning_and_preprocessing.ipynb
+│   ├── 04_eda.ipynb
+│   ├── 05_sentiment_analysis_transformer.ipynb
+│   ├── 05_sentiment_analysis_vader.ipynb
+│   ├── 05_sentiment_llm_assisted_validation.ipynb
+│   ├── 05_sentiment_manual_validation.ipynb
+│   ├── 06_stress_and_emotion_analysis.ipynb
+│   ├── 07_topic_modeling.ipynb
+│   └── archive
+│       ├── 02_data_inspection.ipynb
+│       └── 02_data_quality_and_cleaning_fixed.ipynb
+├── presentation
+│   ├── Pipeline-Data-Science (1).pptx.pptx
+│   └── Presentation_Pipeline_AI_Developer_Sentiment_Minimaliste.pptx
+├── README.md
+├── report
+│   ├── banchmark_art.pdf
+│   └── pipeline_Documentation.pdf
+├── requirements.txt
+├── src
+│   ├── collectors
+│   │   ├── github_collector.py
+│   │   ├── hn_collector.py
+│   │   ├── __pycache__
+│   │   │   └── prepare_analysis_dataset.cpython-312.pyc
+│   │   ├── reddit_public_collector.py
+│   │   └── stackoverflow_collector.py
+│   ├── preprocessing
+│   │   ├── prepare_analysis_dataset.py
+│   │   └── __pycache__
+│   │       └── prepare_analysis_dataset.cpython-312.pyc
+│   └── __pycache__
+│       └── reddit_public_collector.cpython-313.pyc
+└── structure.txt
+
+26 directories, 198 files

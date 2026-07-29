@@ -1,0 +1,3 @@
+method,evaluated_records,reference_accuracy,macro_precision,macro_recall,macro_f1,weighted_f1,cohen_kappa
+Transformer,147,0.5102,0.6123,0.5205,0.5099,0.5102,0.2783
+VADER,147,0.4898,0.5418,0.4848,0.4535,0.4562,0.23

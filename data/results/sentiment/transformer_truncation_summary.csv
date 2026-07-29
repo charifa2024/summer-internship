@@ -1,0 +1,7 @@
+metric,value
+records,2666.0
+maximum_allowed_tokens,512.0
+records_exceeding_limit,371.0
+percentage_exceeding_limit,13.92
+median_token_count,133.0
+maximum_token_count,9258.0

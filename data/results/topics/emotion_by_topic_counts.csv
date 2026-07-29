@@ -1,0 +1,11 @@
+topic_name,Burnout or exhaustion,Distrust or uncertainty,Frustration,Job insecurity or fear,No clear emotion,Relief or reduced stress,Stress or anxiety
+Agent / Open / Source,6,21,31,1,452,1,14
+Anthropic / Claude Anthropic / Anthropic Claude,0,11,0,4,227,0,5
+Claude / Sonnet / Opus,2,13,9,0,244,0,3
+Enabled / Disabled / Ms,0,2,7,0,42,0,0
+Gemini / Google / Flash,1,6,12,1,253,0,2
+Gemini Pro / Pro / Gemini,0,4,4,0,107,0,2
+Llama / Cpp / Llama Cpp,3,13,19,0,291,0,8
+Output Mismatch / Mismatch / List Output,0,0,1,0,16,0,0
+Removed / Engineering / Ml,2,0,2,1,60,0,3
+Ve / Don / Know,7,53,68,6,559,2,65
