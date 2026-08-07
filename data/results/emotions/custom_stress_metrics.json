@@ -1,0 +1,10 @@
+{
+  "selected_model": "Calibrated Linear SVM",
+  "labelled_records": 79,
+  "test_records": 20,
+  "test_accuracy": 0.8,
+  "test_macro_f1": 0.7916666666666667,
+  "stress_precision": 0.7142857142857143,
+  "stress_recall": 1.0,
+  "stress_f1": 0.8333333333333334
+}

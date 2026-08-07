@@ -91,6 +91,15 @@ ANALYSIS_READY_JSONL = (
 )
 
 
+CUSTOM_STRESS_CSV = (
+    PROJECT_ROOT
+    / "data"
+    / "results"
+    / "emotions"
+    / "custom_stress_predictions.csv"
+)
+
+
 # -------------------------------------------------------------------
 # Helpers
 # -------------------------------------------------------------------
@@ -166,6 +175,34 @@ def load_best_available_dataset():
         raise FileNotFoundError(
             "No analysis output was found. Run the preprocessing, "
             "sentiment, stress, and topic notebooks first."
+        )
+
+    # Merge the custom trained stress predictions.
+    if (
+        CUSTOM_STRESS_CSV.exists()
+        and "record_id" in dataframe.columns
+    ):
+        custom_stress = pd.read_csv(
+            CUSTOM_STRESS_CSV
+        )
+
+        custom_columns = [
+            column
+            for column in [
+                "record_id",
+                "custom_stress_label",
+                "custom_stress_probability",
+                "custom_stress_confidence",
+                "custom_stress_model",
+            ]
+            if column in custom_stress.columns
+        ]
+
+        dataframe = dataframe.merge(
+            custom_stress[custom_columns],
+            on="record_id",
+            how="left",
+            validate="one_to_one",
         )
 
     list_columns = [
@@ -490,13 +527,24 @@ st.caption(
 )
 
 with st.expander("Data source and methodological note"):
-    st.write(f"**Loaded source:** {data_source_name}")
+    st.write(f"**Main analytical source:** {data_source_name}")
     st.code(data_source_path)
+
+    if CUSTOM_STRESS_CSV.exists():
+        st.write("**Custom model predictions:** loaded")
+        st.code(str(CUSTOM_STRESS_CSV))
+    else:
+        st.warning(
+            "Custom model predictions were not found. Expected file:"
+        )
+        st.code(str(CUSTOM_STRESS_CSV))
+
     st.write(
-        "Sentiment, stress, emotion, and topic labels are model- or "
-        "rule-generated analytical outputs. LLM-assisted validation "
-        "labels are provisional references, not independent human "
-        "ground truth."
+        "Rule-based stress results and custom-model stress results "
+        "answer the same binary question in different ways. "
+        "The rule-based method uses explicit linguistic rules. "
+        "The custom model uses TF-IDF features learned from the "
+        "LLM-assisted labelled sample."
     )
 
 
@@ -530,6 +578,16 @@ selected_stress = st.sidebar.multiselect(
     "Stress direction",
     options=stress_options,
     default=stress_options,
+)
+
+custom_stress_options = available_values(
+    df,
+    "custom_stress_label",
+)
+selected_custom_stress = st.sidebar.multiselect(
+    "Custom stress prediction",
+    options=custom_stress_options,
+    default=custom_stress_options,
 )
 
 topic_options = available_values(
@@ -584,6 +642,16 @@ if (
     filtered_df = filtered_df.loc[
         filtered_df["stress_direction"].isin(
             selected_stress
+        )
+    ]
+
+if (
+    selected_custom_stress
+    and "custom_stress_label" in filtered_df.columns
+):
+    filtered_df = filtered_df.loc[
+        filtered_df["custom_stress_label"].isin(
+            selected_custom_stress
         )
     ]
 
@@ -649,7 +717,7 @@ platform_count = (
     else 0
 )
 
-explicit_stress_records = (
+rule_stress_count = (
     int(
         filtered_df["stress_signal"]
         .map(normalize_boolean)
@@ -659,21 +727,67 @@ explicit_stress_records = (
     else 0
 )
 
-stress_rate = (
-    explicit_stress_records
-    / total_records
-    * 100
+rule_stress_rate = (
+    rule_stress_count / total_records * 100
     if total_records
     else 0
 )
 
-topic_count = (
-    filtered_df["topic_name"].nunique()
-    if "topic_name" in filtered_df.columns
+custom_stress_count = (
+    int(
+        filtered_df["custom_stress_label"]
+        .fillna("")
+        .astype(str)
+        .eq("Stress")
+        .sum()
+    )
+    if "custom_stress_label" in filtered_df.columns
     else 0
 )
 
-kpi_1, kpi_2, kpi_3, kpi_4 = st.columns(4)
+custom_stress_rate = (
+    custom_stress_count / total_records * 100
+    if total_records
+    else 0
+)
+
+agreement_rate = 0.0
+
+if (
+    total_records
+    and "stress_signal" in filtered_df.columns
+    and "custom_stress_label" in filtered_df.columns
+):
+    rule_binary = (
+        filtered_df["stress_signal"]
+        .map(normalize_boolean)
+        .map(
+            {
+                True: "Stress",
+                False: "No stress",
+            }
+        )
+    )
+
+    custom_binary = (
+        filtered_df["custom_stress_label"]
+        .fillna("")
+        .astype(str)
+    )
+
+    comparable = custom_binary.isin(
+        ["Stress", "No stress"]
+    )
+
+    if comparable.any():
+        agreement_rate = (
+            rule_binary.loc[comparable]
+            .eq(custom_binary.loc[comparable])
+            .mean()
+            * 100
+        )
+
+kpi_1, kpi_2, kpi_3, kpi_4, kpi_5 = st.columns(5)
 
 kpi_1.metric(
     "Filtered records",
@@ -686,13 +800,18 @@ kpi_2.metric(
 )
 
 kpi_3.metric(
-    "Explicit stress signals",
-    f"{stress_rate:.1f}%",
+    "Rule-based stress",
+    f"{rule_stress_rate:.1f}%",
 )
 
 kpi_4.metric(
-    "Discovered topics",
-    f"{topic_count:,}",
+    "Custom-model stress",
+    f"{custom_stress_rate:.1f}%",
+)
+
+kpi_5.metric(
+    "Rule/model agreement",
+    f"{agreement_rate:.1f}%",
 )
 
 
@@ -951,6 +1070,147 @@ with stress_tab:
                 figure,
                 use_container_width=True,
             )
+
+    st.divider()
+    st.subheader("Rule-based method vs custom model")
+
+    if (
+        "custom_stress_label" not in filtered_df.columns
+        or filtered_df["custom_stress_label"].isna().all()
+    ):
+        st.warning(
+            "No custom model predictions are loaded. "
+            "Run the prediction script first."
+        )
+    else:
+        comparison_df = filtered_df.copy()
+
+        comparison_df["rule_based_binary_label"] = (
+            comparison_df["stress_signal"]
+            .map(normalize_boolean)
+            .map(
+                {
+                    True: "Stress",
+                    False: "No stress",
+                }
+            )
+        )
+
+        comparison_df["methods_agree"] = (
+            comparison_df["rule_based_binary_label"]
+            .eq(
+                comparison_df[
+                    "custom_stress_label"
+                ]
+            )
+        )
+
+        left, right = st.columns(2)
+
+        with left:
+            custom_distribution = normalized_distribution(
+                comparison_df,
+                "custom_stress_label",
+            )
+
+            figure = px.bar(
+                custom_distribution,
+                x="custom_stress_label",
+                y="records",
+                title="Custom model predictions",
+                labels={
+                    "custom_stress_label": "Prediction",
+                    "records": "Records",
+                },
+            )
+
+            st.plotly_chart(
+                figure,
+                use_container_width=True,
+            )
+
+        with right:
+            method_comparison = (
+                comparison_df.groupby(
+                    [
+                        "rule_based_binary_label",
+                        "custom_stress_label",
+                    ]
+                )
+                .size()
+                .reset_index(name="records")
+            )
+
+            figure = px.bar(
+                method_comparison,
+                x="rule_based_binary_label",
+                y="records",
+                color="custom_stress_label",
+                barmode="group",
+                title="Rule-based vs custom model",
+                labels={
+                    "rule_based_binary_label": (
+                        "Rule-based result"
+                    ),
+                    "custom_stress_label": (
+                        "Custom result"
+                    ),
+                    "records": "Records",
+                },
+            )
+
+            st.plotly_chart(
+                figure,
+                use_container_width=True,
+            )
+
+        disagreement_df = comparison_df.loc[
+            ~comparison_df["methods_agree"]
+        ].copy()
+
+        st.write(
+            f"**Disagreements:** {len(disagreement_df):,} "
+            f"of {len(comparison_df):,} records"
+        )
+
+        disagreement_columns = [
+            column
+            for column in [
+                "record_id",
+                "platform",
+                "text_clean_basic",
+                "rule_based_binary_label",
+                "custom_stress_label",
+                "custom_stress_probability",
+                "custom_stress_confidence",
+                "primary_emotion",
+                "stress_evidence",
+            ]
+            if column in disagreement_df.columns
+        ]
+
+        st.dataframe(
+            disagreement_df[
+                disagreement_columns
+            ].head(200),
+            use_container_width=True,
+            hide_index=True,
+        )
+
+        disagreement_csv = disagreement_df[
+            disagreement_columns
+        ].to_csv(
+            index=False
+        ).encode("utf-8")
+
+        st.download_button(
+            "Download disagreements",
+            data=disagreement_csv,
+            file_name=(
+                "rule_vs_custom_disagreements.csv"
+            ),
+            mime="text/csv",
+        )
 
     cause_distribution = explode_distribution(
         filtered_df,
@@ -1502,6 +1762,10 @@ with explorer_tab:
             "text_clean_basic",
             "dashboard_sentiment",
             "stress_direction",
+            "custom_stress_label",
+            "custom_stress_probability",
+            "custom_stress_confidence",
+            "custom_stress_model",
             "stress_intensity",
             "primary_emotion",
             "stress_causes",
