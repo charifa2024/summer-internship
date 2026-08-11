@@ -23,6 +23,10 @@ pipeline to identify:
 The dashboard and analytical outputs describe patterns in public developer
 discussions. They do not provide clinical, psychological, or causal diagnoses.
 
+**Supervisor walkthrough:** For a plain-language, step-by-step explanation of
+the entire project (what, why, how, and outputs for each phase), see
+[`docs/00_supervisor_walkthrough.md`](docs/00_supervisor_walkthrough.md).
+
 ---
 
 ## Project Status
