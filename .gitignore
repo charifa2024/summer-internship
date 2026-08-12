@@ -37,3 +37,7 @@ Thumbs.db
 # Figures (regenerate as needed)
 figures/*
 !figures/.gitkeep
+
+# External datasets (downloaded separately)
+data/external/*
+!data/external/.gitkeep
