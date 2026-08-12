@@ -41,3 +41,7 @@ figures/*
 # External datasets (downloaded separately)
 data/external/*
 !data/external/.gitkeep
+
+# Dreaddit generated artifacts
+data/results/emotions/dreaddit_stress_test_predictions.csv
+models/dreaddit_stress_classifier.joblib

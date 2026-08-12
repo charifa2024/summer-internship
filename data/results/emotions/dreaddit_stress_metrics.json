@@ -1,0 +1,11 @@
+{
+  "selected_model": "Logistic Regression",
+  "training_records": 2838,
+  "test_records": 715,
+  "test_accuracy": 0.7258741258741259,
+  "test_macro_f1": 0.7248790677220757,
+  "stress_precision": 0.7223650385604113,
+  "stress_recall": 0.7615176151761518,
+  "stress_f1": 0.741424802110818,
+  "clinical_ground_truth": false
+}
