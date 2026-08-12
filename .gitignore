@@ -45,3 +45,7 @@ data/external/*
 # Dreaddit generated artifacts
 data/results/emotions/dreaddit_stress_test_predictions.csv
 models/dreaddit_stress_classifier.joblib
+
+# Intermediate stress-analysis artifacts
+data/annotations/llm_assisted_stress_sample_v2.csv
+data/results/emotions/dreaddit_stress_predictions_analysis_ready.csv
