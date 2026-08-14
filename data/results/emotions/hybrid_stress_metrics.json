@@ -1,0 +1,15 @@
+{
+  "model": "Hybrid Dreaddit + Synthetic",
+  "classifier": "Logistic Regression",
+  "dreaddit_training_records": 2838,
+  "synthetic_augmentation_records": 1200,
+  "total_training_records": 4038,
+  "dreaddit_test_records": 715,
+  "test_accuracy": 0.737062937062937,
+  "test_macro_f1": 0.7359218570732551,
+  "stress_precision": 0.7302798982188295,
+  "stress_recall": 0.7777777777777778,
+  "stress_f1": 0.7532808398950132,
+  "synthetic_role": "Experimental augmentation only",
+  "clinical_ground_truth": false
+}

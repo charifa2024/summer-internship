@@ -1,0 +1,52 @@
+{
+  "reference_dataset_records": 600,
+  "evaluable_records": 596,
+  "excluded_unclear_records": 4,
+  "reference_no_stress_records": 588,
+  "reference_stress_records": 8,
+  "reference_stress_rate": 0.013422818791946308,
+  "reference_annotation_source": "LLM-assisted reference annotation",
+  "human_ground_truth": false,
+  "clinical_ground_truth": false,
+  "warning": "Only 8 Stress reference cases are available; positive-class metrics are therefore unstable and must be interpreted cautiously.",
+  "models": {
+    "dreaddit_only": {
+      "accuracy": 0.8993288590604027,
+      "balanced_accuracy": 0.7640306122448979,
+      "macro_f1": 0.5446906035141329,
+      "stress_precision": 0.08064516129032258,
+      "stress_recall": 0.625,
+      "stress_f1": 0.14285714285714285,
+      "specificity": 0.9030612244897959,
+      "false_positive_rate": 0.09693877551020408,
+      "mcc": 0.19904508667009474,
+      "true_negative": 531,
+      "false_positive": 57,
+      "false_negative": 3,
+      "true_positive": 5,
+      "predicted_stress": 62,
+      "predicted_no_stress": 534,
+      "model": "Dreaddit only",
+      "predicted_stress_rate": 0.1040268456375839
+    },
+    "dreaddit_plus_synthetic": {
+      "accuracy": 0.9161073825503355,
+      "balanced_accuracy": 0.8341836734693877,
+      "macro_f1": 0.5746502997430774,
+      "stress_precision": 0.1111111111111111,
+      "stress_recall": 0.75,
+      "stress_f1": 0.1935483870967742,
+      "specificity": 0.9183673469387755,
+      "false_positive_rate": 0.08163265306122448,
+      "mcc": 0.2679491339331908,
+      "true_negative": 540,
+      "false_positive": 48,
+      "false_negative": 2,
+      "true_positive": 6,
+      "predicted_stress": 54,
+      "predicted_no_stress": 542,
+      "model": "Dreaddit + Synthetic",
+      "predicted_stress_rate": 0.09060402684563758
+    }
+  }
+}
