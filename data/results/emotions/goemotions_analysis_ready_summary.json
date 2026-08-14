@@ -1,0 +1,16 @@
+{
+  "records": 2666,
+  "model": "TF-IDF + One-vs-Rest Logistic Regression",
+  "training_dataset": "GoEmotions simplified",
+  "prediction_strategy": "Per-emotion validation-calibrated thresholds",
+  "emotion_labels": 28,
+  "average_predicted_emotions_per_post": 1.850337584396099,
+  "median_predicted_emotions_per_post": 2.0,
+  "records_with_zero_emotions": 115,
+  "zero_emotion_rate": 0.043135783945986494,
+  "records_with_multiple_emotions": 1406,
+  "multiple_emotion_rate": 0.5273818454613654,
+  "neutral_with_other_emotions": 699,
+  "neutral_conflict_rate": 0.26219054763690924,
+  "interpretation_warning": "Emotion predictions are model outputs and must not be interpreted as psychological diagnoses."
+}

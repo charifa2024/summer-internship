@@ -58,3 +58,6 @@ data/synthetic/*
 
 # Generated GoEmotions model artifact
 models/goemotions_tfidf_ovr_logreg.joblib
+
+# Generated GoEmotions developer-level predictions
+data/results/emotions/goemotions_predictions_analysis_ready.csv
