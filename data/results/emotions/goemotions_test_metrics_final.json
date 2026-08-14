@@ -1,0 +1,19 @@
+{
+  "model": "TF-IDF + One-vs-Rest Logistic Regression",
+  "training_dataset": "GoEmotions simplified",
+  "final_threshold": 0.61,
+  "threshold_selected_on": "validation split",
+  "test_records": 5427,
+  "subset_accuracy": 0.27197346600331673,
+  "micro_precision": 0.4270833333333333,
+  "micro_recall": 0.5830304945489019,
+  "micro_f1": 0.4930189057385263,
+  "macro_precision": 0.3796746917616813,
+  "macro_recall": 0.5352915528101138,
+  "macro_f1": 0.4365499904424528,
+  "samples_f1": 0.4906569445541253,
+  "hamming_loss": 0.04994208849930243,
+  "true_label_cardinality": 1.1662060070020268,
+  "predicted_label_cardinality": 1.592039800995025,
+  "records_with_no_predicted_label": 376
+}

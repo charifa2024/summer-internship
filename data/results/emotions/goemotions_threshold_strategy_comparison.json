@@ -1,0 +1,26 @@
+{
+  "global_threshold": 0.61,
+  "minimum_validation_positives_for_calibration": 20,
+  "global_threshold_test_metrics": {
+    "subset_accuracy": 0.27197346600331673,
+    "micro_precision": 0.4270833333333333,
+    "micro_recall": 0.5830304945489019,
+    "micro_f1": 0.4930189057385263,
+    "macro_f1": 0.4365499904424528,
+    "samples_f1": 0.4906569445541253,
+    "hamming_loss": 0.04994208849930243,
+    "predicted_cardinality": 1.592039800995025,
+    "no_predicted_label": 376
+  },
+  "per_label_threshold_test_metrics": {
+    "subset_accuracy": 0.29832319882071123,
+    "micro_precision": 0.4492853058890795,
+    "micro_recall": 0.620793174277137,
+    "micro_f1": 0.5212949449383044,
+    "macro_f1": 0.443764842047122,
+    "samples_f1": 0.5320812164924935,
+    "hamming_loss": 0.04748743057200769,
+    "predicted_cardinality": 1.611387506909895,
+    "no_predicted_label": 184
+  }
+}

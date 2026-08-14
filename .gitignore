@@ -55,3 +55,6 @@ models/hybrid_dreaddit_synthetic_stress_classifier.joblib
 data/results/emotions/hybrid_stress_dreaddit_test_predictions.csv
 data/results/emotions/stress_real_domain_predictions.csv
 data/synthetic/*
+
+# Generated GoEmotions model artifact
+models/goemotions_tfidf_ovr_logreg.joblib
