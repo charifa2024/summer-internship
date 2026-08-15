@@ -1,0 +1,17 @@
+{
+  "method": "TF-IDF + NMF",
+  "records": 2666,
+  "n_topics": 7,
+  "selection_basis": "Candidate models from 4 to 10 topics were compared using reconstruction error, topic diversity, topic separation, topic sizes, keywords, and qualitative inspection of representative documents.",
+  "stress_interpretation": "Topics are learned independently from all 2,666 posts. Predicted Stress is used only after topic assignment to test association.",
+  "causal_warning": "Topic associations with predicted Stress must not be interpreted as causal effects or clinical psychological conclusions.",
+  "topic_names": {
+    "1": "General AI Development & Agent Workflows",
+    "2": "Gemini / Google Ecosystem",
+    "3": "Claude Coding & Development Tools",
+    "4": "VS Code / GitHub Copilot Technical Issues",
+    "5": "Local LLM Deployment & Inference Performance",
+    "6": "AI Labs / Industry News",
+    "7": "ChatGPT / OpenAI User Experience"
+  }
+}

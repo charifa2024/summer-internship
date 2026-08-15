@@ -1,0 +1,50 @@
+n_topics,topic,topic_number,top_terms,dominant_document_count,dominant_document_share
+4,0,1,"llama, cpp, llama cpp, local, code, chatgpt, context, data, prompt, support",1651,0.6192798199549887
+4,1,2,"gemini, gemini pro, pro, google, flash, gemini flash, preview, google gemini, deep, update",358,0.1342835708927232
+4,2,3,"claude, anthropic, claude code, code, opus, claude anthropic, sonnet, openai, claude opus, claude sonnet",553,0.20742685671417854
+4,3,4,"enabled, version, disabled_off, vs code, code, enabled_on, disabled_off_ok, vs, copilot, chat",104,0.03900975243810953
+5,0,1,"code, chatgpt, local, data, agent, open, context, tools, chat, prompt",1425,0.5345086271567892
+5,1,2,"gemini, gemini pro, pro, google, flash, gemini flash, preview, google gemini, deep, update",354,0.13278319579894973
+5,2,3,"claude, anthropic, claude code, opus, claude anthropic, code, sonnet, claude opus, openai, claude sonnet",482,0.18079519879969994
+5,3,4,"enabled, version, disabled_off, vs code, enabled_on, disabled_off_ok, code, vs, copilot, vendor",86,0.03225806451612903
+5,4,5,"llama, cpp, llama cpp, gguf, ollama, support, gpu, cpu, performance, inference",319,0.11965491372843211
+6,0,1,"code, local, data, agent, context, open, tools, tool, agents, prompt",1120,0.42010502625656415
+6,1,2,"gemini, gemini pro, pro, google, flash, gemini flash, preview, google gemini, deep, update",349,0.13090772693173294
+6,2,3,"claude, anthropic, claude code, opus, code, sonnet, claude anthropic, claude opus, claude sonnet, claudeai",411,0.1541635408852213
+6,3,4,"enabled, version, disabled_off, vs code, enabled_on, disabled_off_ok, code, vs, vendor, copilot",79,0.029632408102025505
+6,4,5,"llama, cpp, llama cpp, gguf, ollama, support, gpu, cpu, performance, inference",300,0.11252813203300825
+6,5,6,"openai, chatgpt, anthropic, google, openai anthropic, says, gpt-5, sam, news, people",407,0.15266316579144787
+7,0,1,"local, data, code, agent, open, context, text, tools, prompt, built",1037,0.38897224306076517
+7,1,2,"gemini, gemini pro, pro, google, flash, gemini flash, preview, google gemini, deep, update",349,0.13090772693173294
+7,2,3,"claude, claude code, code, opus, sonnet, claude sonnet, claude opus, coding, codex, vs",279,0.10465116279069768
+7,3,4,"enabled, version, disabled_off, vs code, enabled_on, disabled_off_ok, code, vs, copilot, vendor",87,0.032633158289572396
+7,4,5,"llama, cpp, llama cpp, gguf, ollama, support, gpu, cpu, vulkan, performance",296,0.1110277569392348
+7,5,6,"anthropic, openai, claude anthropic, openai anthropic, claude, news, anthropic claude, google, billion, claudeai",271,0.10165041260315079
+7,6,7,"chatgpt, openai, says, gpt-5, sam, gpt, people, plus, users, altman",347,0.1301575393848462
+8,0,1,"local, data, code, agent, open, context, tools, text, prompt, built",1029,0.3859714928732183
+8,1,2,"gemini, gemini pro, pro, google, flash, gemini flash, preview, google gemini, deep, update",350,0.1312828207051763
+8,2,3,"claude, claude code, code, opus, sonnet, claude sonnet, claude opus, coding, codex, vs",283,0.10615153788447111
+8,3,4,"enabled, version, disabled_off, vs code, enabled_on, disabled_off_ok, code, vs, copilot, vendor",91,0.034133533383345835
+8,4,5,"llama, cpp, llama cpp, gguf, ollama, support, gpu, cpu, vulkan, performance",298,0.11177794448612154
+8,5,6,"anthropic, openai, claude anthropic, openai anthropic, claude, news, anthropic claude, google, billion, claudeai",265,0.09939984996249063
+8,6,7,"chatgpt, openai, says, gpt-5, sam, gpt, people, plus, users, altman",333,0.12490622655663916
+8,7,8,"output_mismatch, output differs, list output, output_mismatch list, differs, serge, fix, values differ, tensor values, list",17,0.006376594148537134
+9,0,1,"data, local, people, built, tools, prompt, context, lot, open, best",805,0.30195048762190546
+9,1,2,"gemini, gemini pro, pro, google, flash, gemini flash, preview, google gemini, deep, update",347,0.1301575393848462
+9,2,3,"claude, claude code, code, opus, sonnet, claude opus, claude sonnet, coding, codex, claude anthropic",275,0.10315078769692423
+9,3,4,"enabled, disabled_off, enabled_on, disabled_off_ok, version, driver_version, vendor, ms-python, machine, device",46,0.0172543135783946
+9,4,5,"llama, cpp, llama cpp, gguf, ollama, support, gpu, cpu, vulkan, inference",283,0.10615153788447111
+9,5,6,"anthropic, openai, claude anthropic, openai anthropic, news, claude, anthropic claude, google, billion, fable",249,0.09339834958739685
+9,6,7,"chatgpt, openai, says, gpt-5, sam, plus, gpt, users, altman, sam altman",327,0.122655663915979
+9,7,8,"output_mismatch, output differs, list output, output_mismatch list, differs, serge, fix, values differ, tensor values, differ",15,0.005626406601650412
+9,8,9,"copilot, agent, code, vs, vs code, version, chat, github, extension, github copilot",319,0.11965491372843211
+10,0,1,"data, local, people, tools, built, prompt, context, lot, open, project",800,0.30007501875468867
+10,1,2,"gemini pro, pro, gemini, preview, update, discount, pro preview, pro discount, discount nn, pro deep",113,0.04238559639909977
+10,2,3,"claude, claude code, code, opus, sonnet, claude opus, claude sonnet, coding, codex, claude anthropic",271,0.10165041260315079
+10,3,4,"enabled, disabled_off, enabled_on, disabled_off_ok, version, driver_version, vendor, ms-python, machine, device",46,0.0172543135783946
+10,4,5,"llama, cpp, llama cpp, gguf, ollama, support, gpu, cpu, vulkan, inference",281,0.1054013503375844
+10,5,6,"anthropic, openai, claude anthropic, openai anthropic, news, claude, anthropic claude, billion, google, fable",251,0.09414853713428357
+10,6,7,"chatgpt, openai, says, gpt-5, sam, plus, gpt, users, altman, sam altman",305,0.11440360090022506
+10,7,8,"output_mismatch, list output, output differs, output_mismatch list, differs, serge, fix, tensor values, values differ, differ",14,0.005251312828207052
+10,8,9,"copilot, agent, code, vs, vs code, version, chat, github, extension, github copilot",314,0.1177794448612153
+10,9,10,"gemini, flash, google, gemini flash, google gemini, image, nano, gemini cli, release, banana",271,0.10165041260315079

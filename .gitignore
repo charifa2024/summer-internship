@@ -65,3 +65,6 @@ data/results/emotions/goemotions_predictions_analysis_ready.csv
 # Generated final Stress / integrated row-level predictions
 data/results/emotions/hybrid_stress_predictions_analysis_ready.csv
 data/results/combined/sentiment_emotion_stress_predictions.csv
+
+# Generated row-level final topic assignments
+data/results/stress_topics/final_topic_assignments.csv
