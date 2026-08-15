@@ -1,0 +1,3 @@
+method,negative_posts,negative_and_stress,stress_rate_within_negative
+VADER,565,81,0.1433628318584071
+Transformer,482,117,0.24273858921161826

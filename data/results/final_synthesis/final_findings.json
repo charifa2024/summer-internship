@@ -1,0 +1,93 @@
+{
+  "records": 2666,
+  "sentiment": {
+    "vader_transformer_agreement_rate": 0.37621905476369094,
+    "vader_distribution": {
+      "Positive": 1701,
+      "Negative": 565,
+      "Neutral": 400
+    },
+    "transformer_distribution": {
+      "Neutral": 1707,
+      "Negative": 482,
+      "Positive": 477
+    }
+  },
+  "stress": {
+    "predicted_stress_posts": 248,
+    "predicted_no_stress_posts": 2418,
+    "predicted_stress_rate": 0.09302325581395349,
+    "average_stress_probability": 0.3369559760185228
+  },
+  "negative_sentiment_is_not_stress": {
+    "vader_negative_stress_rate": 0.1433628318584071,
+    "transformer_negative_stress_rate": 0.24273858921161826
+  },
+  "top_emotions_enriched_in_predicted_stress": [
+    {
+      "emotion": "annoyance",
+      "stress_rate": 0.2661290322580645,
+      "no_stress_rate": 0.0913978494623656,
+      "rate_difference": 0.1747311827956989,
+      "rate_ratio": 2.911764705882353
+    },
+    {
+      "emotion": "disappointment",
+      "stress_rate": 0.2056451612903226,
+      "no_stress_rate": 0.0421836228287841,
+      "rate_difference": 0.1634615384615384,
+      "rate_ratio": 4.875
+    },
+    {
+      "emotion": "confusion",
+      "stress_rate": 0.2379032258064516,
+      "no_stress_rate": 0.1124896608767576,
+      "rate_difference": 0.1254135649296939,
+      "rate_ratio": 2.114889705882353
+    },
+    {
+      "emotion": "realization",
+      "stress_rate": 0.1814516129032258,
+      "no_stress_rate": 0.0719602977667493,
+      "rate_difference": 0.1094913151364764,
+      "rate_ratio": 2.521551724137931
+    },
+    {
+      "emotion": "disapproval",
+      "stress_rate": 0.2983870967741935,
+      "no_stress_rate": 0.1943755169561621,
+      "rate_difference": 0.1040115798180314,
+      "rate_ratio": 1.5351063829787237
+    }
+  ],
+  "topic_stress_association": {
+    "chi_square": 28.526533519620564,
+    "p_value": 7.47596298696122e-05,
+    "cramers_v": 0.1034414090252689,
+    "significant_topics": [
+      {
+        "topic": 6,
+        "topic_name": "AI Labs / Industry News",
+        "predicted_stress_rate": 0.03690036900369,
+        "relative_risk": 0.3713293435455363,
+        "odds_ratio": 0.3472423452139476,
+        "fisher_p_fdr_bh": 0.00126164504005
+      },
+      {
+        "topic": 7,
+        "topic_name": "ChatGPT / OpenAI User Experience",
+        "predicted_stress_rate": 0.1498559077809798,
+        "relative_risk": 1.7730400517555722,
+        "odds_ratio": 1.9093047388446904,
+        "fisher_p_fdr_bh": 0.00126164504005
+      }
+    ]
+  },
+  "interpretation_limits": [
+    "Predicted Stress is a model output, not a clinical diagnosis or an estimate of psychological-stress prevalence.",
+    "Negative sentiment must not be treated as equivalent to Stress.",
+    "Topic\u2013Stress associations are associations and do not establish causality.",
+    "Residual domain shift and false positives remain in the Stress classifier.",
+    "GoEmotions predictions are transferred from a general-domain emotion dataset to developer discussions."
+  ]
+}

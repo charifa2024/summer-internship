@@ -1,0 +1,6 @@
+metric,value,unit
+Analysis-ready posts,2666.0,posts
+VADER–Transformer agreement,0.37621905476369094,proportion
+Predicted Stress posts,248.0,posts
+Predicted Stress rate,0.09302325581395349,proportion
+Average predicted emotions per post,1.850337584396099,emotions/post
