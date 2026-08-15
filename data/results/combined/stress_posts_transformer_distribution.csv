@@ -1,0 +1,4 @@
+transformer_label,count,rate
+Negative,117,0.4717741935483871
+Neutral,110,0.4435483870967742
+Positive,21,0.0846774193548387

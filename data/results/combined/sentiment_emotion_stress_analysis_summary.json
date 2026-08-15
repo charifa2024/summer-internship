@@ -1,0 +1,14 @@
+{
+  "records": 2666,
+  "stress_records": 248,
+  "no_stress_records": 2418,
+  "stress_rate": 0.09302325581395349,
+  "sentiment_method_agreement_rate": 0.37621905476369094,
+  "vader_negative_records": 565,
+  "vader_negative_and_stress": 81,
+  "vader_negative_stress_rate": 0.1433628318584071,
+  "transformer_negative_records": 482,
+  "transformer_negative_and_stress": 117,
+  "transformer_negative_stress_rate": 0.24273858921161826,
+  "interpretation": "Negative sentiment and predicted Stress are related analytical dimensions but must not be treated as equivalent."
+}

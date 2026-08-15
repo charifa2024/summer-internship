@@ -1,0 +1,11 @@
+{
+  "records": 2666,
+  "model": "Hybrid Dreaddit + Synthetic TF-IDF Logistic Regression",
+  "classification_threshold": 0.5,
+  "stress_count": 248,
+  "no_stress_count": 2418,
+  "stress_rate": 0.09302325581395349,
+  "no_stress_rate": 0.9069767441860465,
+  "average_stress_probability": 0.3369559760185228,
+  "interpretation_warning": "Predicted Stress is a model classification and must not be interpreted as clinical or psychological diagnosis."
+}

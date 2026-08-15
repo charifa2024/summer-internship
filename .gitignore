@@ -61,3 +61,7 @@ models/goemotions_tfidf_ovr_logreg.joblib
 
 # Generated GoEmotions developer-level predictions
 data/results/emotions/goemotions_predictions_analysis_ready.csv
+
+# Generated final Stress / integrated row-level predictions
+data/results/emotions/hybrid_stress_predictions_analysis_ready.csv
+data/results/combined/sentiment_emotion_stress_predictions.csv

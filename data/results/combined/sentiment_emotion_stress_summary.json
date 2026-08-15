@@ -1,0 +1,22 @@
+{
+  "records": 2666,
+  "columns": 94,
+  "unique_record_ids": 2666,
+  "vader_distribution": {
+    "Positive": 1701,
+    "Negative": 565,
+    "Neutral": 400
+  },
+  "transformer_distribution": {
+    "Neutral": 1707,
+    "Negative": 482,
+    "Positive": 477
+  },
+  "hybrid_stress_distribution": {
+    "No stress": 2418,
+    "Stress": 248
+  },
+  "average_emotion_count": 1.850337584396099,
+  "sentiment_methods_agreement_rate": 0.37621905476369094,
+  "interpretation_warning": "Sentiment, emotion, and Stress fields are model outputs and must be interpreted according to their respective validation limitations."
+}
