@@ -92,6 +92,7 @@ def fig_style(
             y=1.02,
             xanchor="left",
             x=0,
+            font=dict(color="#3f3f46"),
         ),
         hoverlabel=dict(
             bgcolor="#ffffff",
@@ -104,6 +105,8 @@ def fig_style(
         gridcolor="#f1f1f4",
         zeroline=False,
         linecolor="#e4e4e7",
+        tickfont=dict(color="#3f3f46"),
+        title_font=dict(color="#3f3f46"),
         automargin=True,
     )
     fig.update_yaxes(
@@ -111,6 +114,8 @@ def fig_style(
         gridcolor="#f1f1f4",
         zeroline=False,
         linecolor="#e4e4e7",
+        tickfont=dict(color="#3f3f46"),
+        title_font=dict(color="#3f3f46"),
         automargin=True,
     )
     return fig
@@ -274,6 +279,7 @@ st.markdown(
     """
     <style>
     :root {
+        color-scheme: light !important;
         --page: #eee7fb;
         --panel: #ffffff;
         --purple: #4b2491;
@@ -286,9 +292,16 @@ st.markdown(
         --line: #d9d1eb;
     }
 
+    html, body {
+        color-scheme: light !important;
+        background: var(--page) !important;
+    }
+
     .stApp {
+        color-scheme: light !important;
         background: var(--page);
-        color: var(--ink);
+        color: var(--ink) !important;
+        -webkit-text-fill-color: initial;
     }
 
     .block-container {
@@ -432,6 +445,149 @@ st.markdown(
 
     div[data-testid="stTabs"] button {
         font-weight: 650;
+    }
+
+    /* --------------------------------------------------------
+       THEME SAFETY
+       Keep the dashboard visually identical in browser/Streamlit
+       light and dark modes by explicitly styling native widgets.
+       -------------------------------------------------------- */
+
+    /* General Streamlit text rendered directly on the page. */
+    .stApp,
+    .stApp p,
+    .stApp label,
+    .stApp li,
+    .stApp div[data-testid="stMarkdownContainer"] {
+        color: var(--ink);
+    }
+
+    /* Native headings/subheadings.
+       Streamlit/OS dark mode can apply a light text fill even when `color` is
+       set, so force both CSS color and WebKit text fill. */
+    .stApp h1,
+    .stApp h2,
+    .stApp h3,
+    .stApp h4,
+    .stApp h5,
+    .stApp h6,
+    div[data-testid="stMarkdownContainer"] h1,
+    div[data-testid="stMarkdownContainer"] h2,
+    div[data-testid="stMarkdownContainer"] h3,
+    div[data-testid="stMarkdownContainer"] h4,
+    div[data-testid="stMarkdownContainer"] h5,
+    div[data-testid="stMarkdownContainer"] h6 {
+        color: var(--ink) !important;
+        -webkit-text-fill-color: var(--ink) !important;
+        opacity: 1 !important;
+    }
+
+    /* Normal Markdown text outside our custom HTML cards. */
+    div[data-testid="stMarkdownContainer"] p,
+    div[data-testid="stMarkdownContainer"] li,
+    div[data-testid="stMarkdownContainer"] strong,
+    div[data-testid="stMarkdownContainer"] em {
+        color: var(--ink) !important;
+        -webkit-text-fill-color: var(--ink) !important;
+        opacity: 1 !important;
+    }
+
+    /* Captions and secondary text. */
+    div[data-testid="stCaptionContainer"],
+    div[data-testid="stCaptionContainer"] p {
+        color: var(--muted) !important;
+        -webkit-text-fill-color: var(--muted) !important;
+        opacity: 1 !important;
+    }
+
+    /* Tabs: inactive and active labels stay readable. */
+    div[data-testid="stTabs"] button,
+    div[data-testid="stTabs"] button p {
+        color: #4c3c65 !important;
+        -webkit-text-fill-color: #4c3c65 !important;
+        opacity: 1 !important;
+    }
+
+    div[data-testid="stTabs"] button[aria-selected="true"],
+    div[data-testid="stTabs"] button[aria-selected="true"] p {
+        color: var(--purple) !important;
+        -webkit-text-fill-color: var(--purple) !important;
+        opacity: 1 !important;
+    }
+
+    /* Selectbox / multiselect controls and their visible values. */
+    div[data-baseweb="select"] > div {
+        background-color: #ffffff !important;
+        color: var(--ink) !important;
+        border-color: var(--line) !important;
+    }
+
+    div[data-baseweb="select"] span,
+    div[data-baseweb="select"] div,
+    div[data-baseweb="tag"] span {
+        color: var(--ink) !important;
+    }
+
+    /* Multiselect tags: keep contrast even in dark mode. */
+    div[data-baseweb="tag"] {
+        background-color: #eee7fb !important;
+        color: #3b2565 !important;
+    }
+
+    /* Text inputs, including the search field. */
+    div[data-testid="stTextInput"] input,
+    div[data-testid="stTextInput"] input:focus {
+        background-color: #ffffff !important;
+        color: var(--ink) !important;
+        caret-color: var(--ink) !important;
+        -webkit-text-fill-color: var(--ink) !important;
+    }
+
+    div[data-testid="stTextInput"] input::placeholder {
+        color: #8b8494 !important;
+        opacity: 1 !important;
+        -webkit-text-fill-color: #8b8494 !important;
+    }
+
+    /* Disabled text areas used to inspect developer posts. */
+    div[data-testid="stTextArea"] textarea,
+    div[data-testid="stTextArea"] textarea:disabled {
+        background-color: #ffffff !important;
+        color: var(--ink) !important;
+        -webkit-text-fill-color: var(--ink) !important;
+        opacity: 1 !important;
+    }
+
+    /* Expanders and their summaries. */
+    div[data-testid="stExpander"] {
+        background-color: #ffffff;
+        color: var(--ink);
+    }
+
+    div[data-testid="stExpander"] summary,
+    div[data-testid="stExpander"] summary p,
+    div[data-testid="stExpander"] details {
+        color: var(--ink) !important;
+    }
+
+    /* Native info/warning messages, when used. */
+    div[data-testid="stAlert"] p,
+    div[data-testid="stAlert"] div {
+        color: var(--ink);
+    }
+
+    /* Dataframes/tables: keep surrounding UI and column controls legible. */
+    div[data-testid="stDataFrame"] {
+        color: var(--ink);
+    }
+
+    /* Widget labels such as Platform, Stress label, Topic and Search. */
+    div[data-testid="stWidgetLabel"] p,
+    div[data-testid="stWidgetLabel"] label,
+    div[data-testid="stWidgetLabel"] span {
+        color: #4c3c65 !important;
+        -webkit-text-fill-color: #4c3c65 !important;
+        opacity: 1 !important;
     }
 
     .small-note {
@@ -852,7 +1008,7 @@ with tabs[0]:
                 fig.add_bar(name="Transformer", x=pivot.index, y=pivot["Transformer"] * 100, marker_color="#4b2491")
             fig.update_layout(barmode="group", yaxis_title="Share of posts (%)", xaxis_title="")
             fig_style(fig, height=335)
-            st.plotly_chart(fig, use_container_width=True, config={"displayModeBar": False})
+            st.plotly_chart(fig, use_container_width=True, theme=None, config={"displayModeBar": False})
 
     with center:
         st.markdown("#### Predicted Stress by topic")
@@ -877,7 +1033,7 @@ with tabs[0]:
             fig.add_vline(x=STRESS_RATE * 100, line_dash="dot", line_color="#71717a")
             fig.update_layout(xaxis_title="Predicted Stress rate (%)", yaxis_title="")
             fig_style(fig, height=335, showlegend=False)
-            st.plotly_chart(fig, use_container_width=True, config={"displayModeBar": False})
+            st.plotly_chart(fig, use_container_width=True, theme=None, config={"displayModeBar": False})
 
     with right:
         st.markdown("#### Stress distribution")
@@ -894,7 +1050,7 @@ with tabs[0]:
             textinfo="percent",
         ))
         fig_style(fig, height=335, showlegend=True)
-        st.plotly_chart(fig, use_container_width=True, config={"displayModeBar": False})
+        st.plotly_chart(fig, use_container_width=True, theme=None, config={"displayModeBar": False})
 
     info_box(
         "Main message",
@@ -943,7 +1099,7 @@ with tabs[1]:
             )
             fig.update_layout(barmode="group", yaxis_title="Share of posts (%)")
             fig_style(fig, height=390)
-            st.plotly_chart(fig, use_container_width=True, config={"displayModeBar": False})
+            st.plotly_chart(fig, use_container_width=True, theme=None, config={"displayModeBar": False})
 
     with c2:
         st.markdown("#### Key result")
@@ -987,7 +1143,7 @@ with tabs[1]:
             ))
             fig.update_layout(xaxis_title="Share of posts (%)", yaxis_title="")
             fig_style(fig, height=430, showlegend=False)
-            st.plotly_chart(fig, use_container_width=True, config={"displayModeBar": False})
+            st.plotly_chart(fig, use_container_width=True, theme=None, config={"displayModeBar": False})
 
     info_box(
         "Emotion layer",
@@ -1058,7 +1214,7 @@ with tabs[2]:
             showscale=False,
         ))
         fig_style(fig, height=335, showlegend=False)
-        st.plotly_chart(fig, use_container_width=True, config={"displayModeBar": False})
+        st.plotly_chart(fig, use_container_width=True, theme=None, config={"displayModeBar": False})
 
     with right:
         card(
@@ -1111,7 +1267,7 @@ with tabs[3]:
         fig.add_bar(name="Predicted Stress", y=e["emotion"], x=e["stress_rate"] * 100, orientation="h", marker_color="#ff4f8b")
         fig.update_layout(barmode="group", xaxis_title="Share of posts (%)", yaxis_title="")
         fig_style(fig, height=430)
-        st.plotly_chart(fig, use_container_width=True, config={"displayModeBar": False})
+        st.plotly_chart(fig, use_container_width=True, theme=None, config={"displayModeBar": False})
         st.caption(
             "The largest descriptive enrichments are annoyance, disappointment, confusion, realization and disapproval. "
             "These are descriptive comparisons, not significance tests."
@@ -1155,7 +1311,7 @@ with tabs[4]:
         )
         fig.update_layout(xaxis_title="Predicted Stress rate (%)", yaxis_title="")
         fig_style(fig, height=470, showlegend=False)
-        st.plotly_chart(fig, use_container_width=True, config={"displayModeBar": False})
+        st.plotly_chart(fig, use_container_width=True, theme=None, config={"displayModeBar": False})
 
         stats_table = topic_final[[
             "topic_name", "posts", "predicted_stress_rate", "relative_risk",
