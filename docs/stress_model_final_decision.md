@@ -1,109 +1,81 @@
 # Final Stress Model Decision
 
-## Final model
+## Final classifier
 
-The retained stress classifier is the hybrid model:
+```text
+2,838 Dreaddit official training posts
++ 1,200 synthetic developer-style training examples
+= 4,038 training records
 
-- Dreaddit official training split: 2,838 real labelled posts
-- Synthetic developer augmentation: 1,200 posts
-- Total training records: 4,038
-- TF-IDF unigram/bigram representation
+TF-IDF unigrams/bigrams
++ Logistic Regression
++ threshold 0.50
+```
+
+Synthetic data are augmentation only.
+
+## Model-selection principle
+
+Candidate baseline classifiers were compared using training cross-validation:
 - Logistic Regression
-- Classification threshold: 0.50
+- calibrated Linear SVM
+- Complement Naive Bayes
 
-Synthetic data are used only as experimental augmentation and do not
-replace real Dreaddit training data.
+The retained baseline was then evaluated on the untouched official Dreaddit test split.
 
-## Dreaddit official test performance
-
-The untouched Dreaddit test split contains 715 posts.
+## Dreaddit official test
 
 Hybrid model:
-
 - Accuracy: 0.7371
 - Macro F1: 0.7359
 - Stress Precision: 0.7303
 - Stress Recall: 0.7778
 - Stress F1: 0.7533
 
-The hybrid model improved all reported metrics relative to the
-Dreaddit-only baseline.
+Synthetic augmentation provides a modest improvement over the Dreaddit-only baseline.
 
-## Developer-domain validation
+## Developer-domain reference evaluation
 
-The developer reference set originally contains 600 posts:
-
+600-post set:
 - 588 No stress
 - 8 Stress
 - 4 Unclear
+- 596 evaluable
 
-The 4 Unclear records are excluded from metric calculation, leaving
-596 evaluable records.
-
-Hybrid performance:
-
-- Accuracy: 0.9161
+Hybrid:
 - Balanced Accuracy: 0.8342
-- Macro F1: 0.5747
 - Stress Precision: 0.1111
 - Stress Recall: 0.7500
 - Stress F1: 0.1935
-- Specificity: 0.9184
-- False-positive rate: 0.0816
 - MCC: 0.2679
 
 Confusion matrix:
+- TN=540
+- FP=48
+- FN=2
+- TP=6
 
-- True Negative: 540
-- False Positive: 48
-- False Negative: 2
-- True Positive: 6
+## Critical finding
 
-## Error analysis
+The model detects 6/8 reference Stress cases but produces 48 false positives. Many errors involve technical frustration or strong complaint language that resembles general-domain distress language.
 
-False positives are dominated by technical questions, criticism,
-confusion, frustration, and general AI-risk discussions that contain
-language resembling distress without expressing personal
-psychological stress.
+This is evidence of **domain shift**.
 
-False negatives mainly involve more subtle career-related pressure,
-such as interview nervousness, unemployment, or uncertainty about
-future employability.
+## Final corpus
 
-The remaining errors therefore indicate domain shift between general
-Reddit stress language and AI/developer discussions.
+- 2,418 No stress
+- 248 predicted Stress
+- 9.30% model-predicted Stress rate
 
-## Threshold decision
+This is not psychological-Stress prevalence.
 
-The default 0.50 threshold is retained.
+## Final role in the pipeline
 
-Several genuine Stress examples have probabilities only slightly above
-0.50, so increasing the threshold would reduce false positives at the
-cost of substantially reducing Stress Recall.
-
-## Interpretation
-
-The hybrid model is retained because synthetic augmentation improves
-performance on both:
-
-1. the untouched Dreaddit official test set; and
-2. the developer-domain reference set.
-
-However, developer-domain Stress prevalence must NOT be inferred
-directly from model predictions.
-
-The developer reference annotations are LLM-assisted exploratory
-annotations and are neither human clinical ground truth nor diagnostic
-labels.
-
-Because the 600 developer posts have now been used for error analysis,
-they are treated as a developer-domain validation/reference set rather
-than an untouched final test set.
-
-## Next stage
-
-The Stress component is considered methodologically stable.
-
-The next analysis stage is GoEmotions, followed by:
-
-Sentiment -> Emotions -> Stress -> Stress-associated Topics.
+```text
+Sentiment
+→ Emotions
+→ Stress & critical validation
+→ Integrated analysis
+→ NMF topics
+→ Topic × predicted-Stress statistics
+```

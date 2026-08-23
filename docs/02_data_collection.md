@@ -1,100 +1,63 @@
 # 02 — Data Collection
 
-## 1. Objective
+## Objective
 
-The purpose of the data-collection phase was to create a recent
-multi-platform corpus of developer discussions about artificial intelligence
-tools and AI coding assistants.
+Create a multi-source corpus of public developer-oriented discussions about AI tools and AI coding assistants.
 
-## 2. Selected Keywords
+## Sources
 
-The main keywords used during collection were:
-
-- AI
-- ChatGPT
-- Copilot
-- Cursor
-- agent
-- automation
-- burnout
-- stress
-- anxiety
-- layoff
-- replaced
-- job security
-- software engineer
-- developer
-
-## 3. Data Sources
-
-| Source | Platform | Collection method | Records |
+| Source | Platform | Method | Records |
 |---|---|---|---:|
-| Arctic Shift | Reddit | Public Reddit archive API | 305 |
-| hnam25 Hugging Face dataset | Reddit | Public pre-existing dataset | 2,000 |
-| divde Hugging Face dataset | Multiple | Public pre-existing dataset | 141 |
-| Hacker News | Hacker News | Public Firebase API | 236 |
+| Arctic Shift | Reddit | Public Reddit archive | 305 |
+| Hugging Face Reddit dataset | Reddit | Public dataset | 2,000 |
+| `divde/sentiment_posts` | Mixed public social data | Public dataset | 141 |
+| Hacker News | Hacker News | Public API | 236 |
 | GitHub Issues | GitHub | Public REST API | 1,616 |
 | Stack Overflow | Stack Overflow | Stack Exchange API | 1,108 |
-| **Total** | **All platforms** |  | **5,406** |
+| **Total** |  |  | **5,406** |
 
-## 4. Reddit API Limitation
+## Main AI concepts
 
-The original plan was to collect Reddit discussions through the official
-Reddit API.
+Collection and relevance logic targeted terms such as:
+- ChatGPT / OpenAI
+- GitHub Copilot
+- Claude / Anthropic
+- Gemini
+- Cursor
+- DeepSeek
+- Llama / Mistral
+- LLMs
+- generative AI
+- AI agents
 
-During the collection period:
+## Main collected fields
 
-- unauthenticated Reddit requests returned HTTP 403 errors;
-- PullPush produced rate-limit problems;
-- an official Reddit API request was submitted;
-- no response was received.
+Depending on source availability:
+- source identifier
+- platform/source
+- community/repository
+- title
+- body text
+- author
+- creation date
+- score
+- comments/answers
+- source URL
 
-To continue the project, Reddit publications were collected through Arctic
-Shift and supplemented with documented public Hugging Face datasets.
+## Raw-data principle
 
-The dataset was also expanded with GitHub Issues, Stack Overflow and Hacker
-News discussions.
+The raw collection is preserved and is not overwritten by cleaning or modeling.
 
-## 5. Collected Fields
+Primary raw dataset:
 
-The available fields vary by source but generally include:
+```text
+data/raw/combined_reddit_posts.jsonl
+```
 
-- identifier;
-- source or platform;
-- subreddit, repository or community;
-- title;
-- body text;
-- score;
-- number of comments or answers;
-- creation date;
-- author;
-- original URL.
+## Sampling limitation
 
-## 6. Raw Dataset
+The collection is intentionally multi-source but not balanced. GitHub Issues and the Hugging Face Reddit corpus contribute much larger shares than some other sources. The corpus therefore describes the collected public technical discourse and must not be interpreted as a probability sample of all developers.
 
-All sources were merged into:
+## Decision
 
-`data/raw/combined_reddit_posts.jsonl`
-
-The file contains 5,406 records in JSON Lines format.
-
-The raw file will remain unchanged during the rest of the project.
-
-## 7. Collection Limitations
-
-- The data does not represent all software developers.
-- The platforms use different sampling methods.
-- Some records have missing dates or metadata.
-- GitHub Issues and Stack Overflow contain technical questions that may not
-  always express a clear personal opinion.
-- The existing sources have different numbers of records.
-- Keyword filtering may include some irrelevant texts.
-
-## 8. Collection Decision
-
-Data collection is now frozen.
-
-`combined_reddit_posts.jsonl` is considered the official raw dataset for the
-project.
-
-The next phase is Data Understanding.
+Collection is frozen at **5,406 raw records**. All scientific filtering is performed in the preprocessing stage.
