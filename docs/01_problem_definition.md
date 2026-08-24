@@ -2,7 +2,9 @@
 
 ## Final project title
 
-**NLP Analysis of Developer-Oriented Discussions on AI Tools: Sentiment, Emotions, Stress-Related Language, and Topic Modeling**
+**Analysis of Developer-Oriented Discussions on AI Tools**
+
+**Subtitle:** *Sentiment, Emotions, Stress-Related Language, and Topic Modeling in Public Technical Discussions*
 
 ## Context
 
@@ -19,7 +21,7 @@ Because these discussions are distributed across platforms and written as unstru
 1. How differently do lexical and contextual sentiment methods classify the corpus?
 2. Which emotion-related language signals are predicted by a multi-label GoEmotions classifier?
 3. Can a Dreaddit-trained Stress classifier transfer reliably to developer-oriented technical language?
-4. How different is predicted Stress from negative sentiment?
+4. How different is model-predicted Stress from negative sentiment?
 5. Which recurring topics are discovered independently from Stress labels?
 6. Is topic membership statistically associated with model-predicted Stress?
 
@@ -32,17 +34,17 @@ Build a reproducible NLP prototype that moves from data collection to critically
 - collect public developer-oriented AI discussions from documented sources;
 - harmonize heterogeneous source schemas;
 - preserve raw text and build stable analysis text fields;
-- apply strict AI relevance filtering and exact-text deduplication;
+- apply strict AI relevance filtering, exact-text deduplication and the minimum-length rule;
 - freeze one common analysis-ready corpus;
 - compare VADER and Transformer sentiment;
 - train and evaluate a multi-label GoEmotions model;
 - build a dedicated Stress classifier using Dreaddit;
 - test synthetic developer-style augmentation;
-- evaluate Stress transfer on a developer-domain reference set;
-- merge Sentiment × Emotions × Stress by record ID;
+- evaluate Stress transfer on an LLM-assisted developer-domain reference set;
+- merge Sentiment × Emotions × Stress by `record_id`;
 - learn NMF topics independently on all final posts;
-- statistically test Topic × predicted-Stress association;
-- provide qualitative evidence and model limitations in a Streamlit dashboard.
+- statistically test Topic × model-predicted Stress association;
+- provide qualitative evidence and explicit model limitations in a Streamlit dashboard.
 
 ## Unit of analysis
 
@@ -69,6 +71,6 @@ The final project is considered successful when:
 - all downstream analyses use the same 2,666 record IDs;
 - model choices are evaluated rather than assumed;
 - final results include limitations and error analysis;
-- topic associations are statistically tested;
+- topic associations are statistically tested with effect size and multiple-comparison correction;
 - dashboard and report use frozen final outputs;
 - another user can reproduce the workflow from the repository documentation.

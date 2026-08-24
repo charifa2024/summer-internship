@@ -2,13 +2,13 @@
 
 ## Objective
 
-Identify recurring discussion contexts independently of Stress prediction, then test whether topic membership is associated with model-predicted Stress.
+Identify recurring discussion contexts independently of Stress prediction, then test whether topic membership is associated with **model-predicted Stress**.
 
 ## Why topics are learned on all posts
 
-NMF is fitted on **all 2,666 posts**, not only on the 248 predicted-Stress posts.
+NMF is fitted on **all 2,666 posts**, not only on the 248 Stress-classified posts.
 
-This prevents Stress-classification errors from defining the topic structure.
+This prevents Stress-classification errors from defining the topic structure itself.
 
 ## Method
 
@@ -38,15 +38,15 @@ Selection criteria:
 Quality indicators:
 - Topic diversity: **0.914**
 - Mean dominant-topic weight: **≈0.709**
-- Mean topic margin: **≈0.502**
+- Mean topic margin: **≈0.501**
 - Smallest topic: **87 posts**
 - Largest topic: **1,037 posts**
 
-At k≥8, very small narrow clusters started to appear.
+At k≥8, very small artifact-like clusters start to appear while assignment strength and separation continue to decline.
 
 ## Final topics
 
-| Topic | Posts | Predicted Stress | Rate |
+| Topic | Posts | Model-predicted Stress | Rate |
 |---|---:|---:|---:|
 | General AI Development & Agent Workflows | 1,037 | 91 | 8.78% |
 | Gemini / Google Ecosystem | 349 | 32 | 9.17% |
@@ -56,24 +56,21 @@ At k≥8, very small narrow clusters started to appear.
 | AI Labs / Industry News | 271 | 10 | 3.69% |
 | ChatGPT / OpenAI User Experience | 347 | 52 | **14.99%** |
 
-Overall predicted-Stress rate: **9.30%**.
+Overall model-predicted Stress rate: **9.30%**.
 
 ## Overall association test
-
-Chi-square:
 
 ```text
 χ²(6) = 28.53
 p ≈ 0.000075
-```
-
-Effect size:
-
-```text
 Cramér's V = 0.103
 ```
 
-Conclusion: statistically significant association, but **small overall effect**.
+Conclusion:
+
+> Topic membership is statistically associated with model-predicted Stress, but the **overall effect is small**.
+
+Statistical significance should not be confused with a strong practical relationship.
 
 ## Per-topic tests
 
@@ -83,21 +80,23 @@ For each topic:
 - Odds Ratio (OR)
 - Benjamini-Hochberg FDR correction
 
-FDR-significant signals:
+FDR-supported signals:
 
 ### ChatGPT / OpenAI User Experience
-- 14.99%
+- model-predicted Stress rate: 14.99%
 - RR = 1.77
 - OR = 1.91
 - FDR p ≈ 0.0013
+- statistically supported higher association
 
 ### AI Labs / Industry News
-- 3.69%
+- model-predicted Stress rate: 3.69%
 - RR = 0.37
 - OR = 0.35
 - FDR p ≈ 0.0013
+- statistically supported lower association
 
-Note: **VS Code / GitHub Copilot has the lowest raw rate (3.45%)**, but AI Labs / Industry News is the robust statistically supported lower association after FDR correction.
+**VS Code / GitHub Copilot Technical Issues** has the lowest raw rate (3.45%), but its individual lower association does **not** survive FDR correction.
 
 ## Main outputs
 
@@ -111,4 +110,7 @@ data/results/final_synthesis/topic_stress_final.csv
 
 ## Interpretation boundary
 
-Topic association does not imply causality. Because the statistical outcome is model-predicted Stress, uncertainty in the Stress classifier propagates into Topic × Stress analysis.
+- Association does not imply causality.
+- The overall effect size is small (Cramér's V≈0.103).
+- The statistical outcome is based on **model-predicted Stress**, so uncertainty in the Stress classifier propagates into Topic × model-predicted Stress analysis.
+- Given the Stress classifier's developer-domain precision of 0.1111 and only eight positive reference cases, topic-level Stress comparisons are exploratory.

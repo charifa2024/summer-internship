@@ -13,7 +13,7 @@ Candidate classifiers were compared using training cross-validation:
 - calibrated Linear SVM
 - Complement Naive Bayes
 
-The final baseline uses TF-IDF + Logistic Regression.
+The pre-declared selection criterion was Macro-F1, so the retained baseline uses **TF-IDF + Logistic Regression**.
 
 ## Hybrid augmentation
 
@@ -27,7 +27,7 @@ Final training configuration:
 = 4,038 training examples
 ```
 
-Synthetic examples are **training augmentation only**.
+Synthetic examples are **training augmentation only**. They are not validation evidence and do not replace real developer-domain reference data.
 
 ## Official Dreaddit test
 
@@ -39,7 +39,7 @@ Synthetic examples are **training augmentation only**.
 | Stress Recall | 0.7615 | 0.7778 |
 | Stress F1 | 0.7414 | **0.7533** |
 
-The improvement is modest.
+The gains are **modest**. They do not by themselves demonstrate robust transfer to developer-oriented technical language.
 
 ## Developer-domain reference evaluation
 
@@ -50,7 +50,7 @@ Reference set:
 - 4 Unclear
 - 596 evaluable
 
-The labels are LLM-assisted reference annotations and are not human/clinical ground truth.
+The labels are **LLM-assisted reference annotations**, not independent human or clinical ground truth.
 
 Confusion matrix:
 
@@ -70,35 +70,31 @@ Metrics:
 - FPR: 0.0816
 - MCC: 0.2679
 
-## Error analysis
+## Critical validity boundary
 
-Main false-positive pattern:
-- technical complaints;
-- debugging frustration;
-- strong product criticism;
-- dramatic technical language without clear personal psychological distress.
+The model detects 6 of only 8 reference Stress cases but produces **48 false positives**. Precision is therefore only **0.1111**. Technical complaints, debugging frustration and dramatic product criticism can resemble distress patterns learned from another domain.
 
-This demonstrates domain shift.
+Because only **eight positive reference cases** are evaluable, positive-class performance estimates are also unstable.
+
+The hybrid model improves several metrics relative to the Dreaddit-only baseline, but these gains do **not** establish robust target-domain transfer.
 
 ## Threshold decision
 
-The default 0.50 threshold is retained because raising it would reduce false positives but would also miss genuine positive reference examples.
+The default 0.50 threshold is retained because raising it would reduce false positives but would also miss genuine positive reference examples in the very small positive class.
 
 ## Final corpus prediction
 
 ```text
 No stress: 2,418
 Predicted Stress: 248
-Prediction rate: 9.30%
+Model-predicted Stress rate: 9.30%
 ```
 
 Correct wording:
 
-> 9.30% of posts were classified as Stress by the final model.
+> **248 of 2,666 posts (9.30%) were classified as Stress by the final model.**
 
-Incorrect wording:
-
-> 9.30% of developers are stressed.
+This is an exploratory **model-prediction rate**, not an estimate of psychological Stress prevalence among developers.
 
 ## Main outputs
 

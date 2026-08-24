@@ -16,7 +16,7 @@ import streamlit as st
 # ============================================================
 
 st.set_page_config(
-    page_title="AI Developer Pulse | Research Dashboard",
+    page_title="AI Developer Discourse Analysis | Research Dashboard",
     page_icon="📊",
     layout="wide",
     initial_sidebar_state="expanded",
@@ -228,6 +228,14 @@ COLLECTED_POSTS = 5406
 ANALYSIS_POSTS = int(final_findings.get("records", 2666))
 REMOVED_POSTS = COLLECTED_POSTS - ANALYSIS_POSTS
 RETENTION_RATE = ANALYSIS_POSTS / COLLECTED_POSTS
+
+# Verified sequential preparation audit used in the final report and dashboard.
+AI_RELEVANT_POSTS = 2726
+UNIQUE_AI_RELEVANT_POSTS = 2694
+LOW_RELEVANCE_REMOVED = 2680
+RELEVANT_DUPLICATES_REMOVED = 32
+SHORT_POSTS_REMOVED = 28
+GLOBAL_DUPLICATE_ROWS_DETECTED = 37
 
 STRESS_POSTS = int(
     final_findings
@@ -1062,11 +1070,12 @@ def hero() -> None:
         """
         <div class="hero">
             <div class="hero-kicker">Internship research dashboard</div>
-            <div class="hero-title">AI Developer Sentiment Analysis</div>
+            <div class="hero-title">Analysis of Developer-Oriented Discussions on AI Tools</div>
             <div class="hero-subtitle">
-                How do developers express sentiment, emotions and Stress when
-                discussing AI tools, and which discussion topics are most associated
-                with Stress-classified language?
+                Sentiment, Emotions, Stress-Related Language, and Topic Modeling in Public Technical Discussions.<br>
+                <strong>Research question:</strong> How do developer-oriented public discussions about AI tools express
+                sentiment, emotions, and stress-related language, and which discussion topics are associated
+                with model-predicted Stress?
             </div>
         </div>
         """
@@ -1502,7 +1511,7 @@ if page == "0 · Executive Overview":
                 "soft": "#eaf0fb",
             },
             {
-                "label": "Predicted Stress",
+                "label": "Model-predicted Stress",
                 "value": f"{STRESS_POSTS:,}",
                 "note": f"{pct(STRESS_RATE, 2)} of final corpus",
                 "accent": "#c84c6f",
@@ -1571,7 +1580,7 @@ if page == "0 · Executive Overview":
                 <div class="flow-title">Topics & statistics</div>
                 <div class="flow-body">
                     Learn NMF topics on all posts, then test Topic ×
-                    predicted-Stress association statistically.
+                    model-predicted Stress association statistically.
                 </div>
             </div>
         </div>
@@ -1607,7 +1616,7 @@ if page == "0 · Executive Overview":
                 "title": "Stress-classified posts show a distinct emotion profile",
                 "body": (
                     "Annoyance, disappointment, confusion, realization and "
-                    "disapproval are descriptively enriched in predicted-Stress posts."
+                    "disapproval are descriptively enriched in model-predicted Stress posts."
                 ),
                 "accent": "#c84c6f",
                 "soft": "#f9e8ed",
@@ -1616,7 +1625,7 @@ if page == "0 · Executive Overview":
                 "chip": "Finding 3",
                 "title": "Discussion context matters, but the effect is small",
                 "body": (
-                    "Topic × predicted-Stress association is statistically significant, "
+                    "Topic × model-predicted Stress association is statistically significant, "
                     "with Cramér’s V = 0.103."
                 ),
                 "accent": "#1f8765",
@@ -1628,11 +1637,11 @@ if page == "0 · Executive Overview":
     interpretation(
         "Research answer",
         (
-            "The project shows that <strong>sentiment, emotions and Stress capture different "
-            "layers of developer language</strong>. Stress cannot be inferred reliably from "
-            "negative polarity alone. Specific emotional signals and discussion context add "
-            "useful information, although Stress transfer to the developer domain remains "
-            "imperfect and topic associations must not be interpreted causally."
+            "The collected developer-oriented technical discussions exhibit <strong>distinct but connected "
+            "sentiment, model-predicted emotion-related, and stress-related linguistic signals</strong>. "
+            "Negative polarity alone is insufficient to identify model-predicted Stress. Predicted emotion "
+            "labels and discussion context add descriptive information, while the Stress classifier remains "
+            "limited by developer-domain false positives and topic associations must not be interpreted causally."
         ),
         accent="#1f8765",
     )
@@ -1690,10 +1699,10 @@ elif page == "1 · Data & Cleaning":
     method_box(
         "Preparation approach",
         (
-            "The preparation stage standardizes the text, removes unusable or duplicate "
-            "records, keeps relevant developer discussions, and freezes the clean text field "
-            "`text_clean_basic` for downstream NLP. The final scientific corpus is stored in "
-            "`data/processed/analysis_ready_posts.jsonl`."
+            "The preparation stage preserves the original text, creates cleaned text fields, applies strict "
+            "AI-relevance rules, removes exact-text duplicates among the remaining relevant records, excludes "
+            "posts containing fewer than five words, and freezes `text_clean_basic` for downstream NLP. "
+            "The final technical corpus is stored in `data/processed/analysis_ready_posts.jsonl`."
         ),
     )
 
@@ -1878,42 +1887,42 @@ elif page == "1 · Data & Cleaning":
 
     figure_label(
         "1.3",
-        "Data-preparation sequence",
-        "Logical sequence used before freezing the analysis corpus.",
+        "Verified sequential data-preparation funnel",
+        "Exact filtering sequence used to construct the frozen 2,666-post final technical corpus.",
     )
 
     cleaning_table = pd.DataFrame(
         [
             [
                 "Raw collection",
-                "Aggregate developer discussions from the available sources",
-                "5,406 records",
+                "Initial multi-source public technical collection",
+                f"{COLLECTED_POSTS:,}",
+                "—",
             ],
             [
-                "Quality filtering",
-                "Remove unusable / malformed / empty / non-analysis-ready records",
-                "Part of the 2,740 aggregate exclusions",
+                "Strict AI relevance",
+                "Keep posts matching explicit AI-tool and terminology patterns",
+                f"{AI_RELEVANT_POSTS:,}",
+                f"{LOW_RELEVANCE_REMOVED:,}",
             ],
             [
-                "Deduplication & normalization",
-                "Avoid duplicate evidence and standardize text representation",
-                "Clean corpus preparation",
+                "Exact-text deduplication",
+                "Remove exact duplicates among the remaining AI-relevant posts",
+                f"{UNIQUE_AI_RELEVANT_POSTS:,}",
+                f"{RELEVANT_DUPLICATES_REMOVED:,}",
             ],
             [
-                "Basic cleaned text",
-                "Create text_clean_basic for NLP models",
-                "Common modeling text field",
-            ],
-            [
-                "Corpus freeze",
-                "Keep one stable record set for all downstream analyses",
-                "2,666 final posts",
+                "Minimum length ≥ 5 words",
+                "Remove posts with insufficient textual content for downstream NLP",
+                f"{ANALYSIS_POSTS:,}",
+                f"{SHORT_POSTS_REMOVED:,}",
             ],
         ],
         columns=[
-            "Stage",
+            "Sequential stage",
             "Purpose",
-            "Result",
+            "Remaining records",
+            "Removed at this stage",
         ],
     )
 
@@ -1924,12 +1933,15 @@ elif page == "1 · Data & Cleaning":
     )
 
     interpretation(
-        "Data-quality statement",
+        "Verified cleaning audit",
         (
-            "The current frozen result artifacts expose a defensible overall reduction from "
-            "<strong>5,406 to 2,666 records</strong>. They do not expose an audited count for "
-            "every individual removal reason. The dashboard therefore reports the overall "
-            "2,740-record reduction without inventing per-reason numbers."
+            "The sequential audit removes <strong>2,680 low-relevance records</strong>, then "
+            "<strong>32 exact-text duplicates</strong> among the remaining relevant posts, and finally "
+            "<strong>28 posts containing fewer than five words</strong>. This yields the frozen "
+            "<strong>2,666-post final technical corpus</strong>. The broader diagnostic audit detected "
+            "37 duplicate rows globally; five had already been removed by relevance filtering, which is why "
+            "32 duplicates are removed at the sequential deduplication step. Missing dates are retained and "
+            "are not used as an eligibility criterion."
         ),
         accent="#a66d1b",
     )
@@ -2011,7 +2023,7 @@ elif page == "2 · Sentiment Analysis":
         "Sentiment distribution by modeling approach",
         (
             "Final VADER and Transformer label distributions over the same "
-            "2,666 developer posts."
+            "2,666-post final technical corpus."
         ),
     )
 
@@ -2407,9 +2419,9 @@ elif page == "3 · Emotion Analysis":
 
     figure_label(
         "3.2",
-        "Most frequent predicted emotions in developer discussions",
+        "Most frequent model-predicted emotion labels",
         (
-            "Top GoEmotions labels applied to the final 2,666-post developer corpus."
+            "Top GoEmotions labels applied to the final 2,666-post technical corpus."
         ),
     )
 
@@ -2514,8 +2526,8 @@ elif page == "3 · Emotion Analysis":
     interpretation(
         "Conclusion",
         (
-            "The developer corpus is not well represented by one emotional label per post. "
-            "More than half of the posts receive multiple predicted emotions, which supports "
+            "The final technical corpus is not well represented by one emotion label per post. "
+            "More than half of the posts receive multiple model-predicted emotion labels, which supports "
             "the use of a <strong>multi-label emotion layer</strong> between broad sentiment "
             "and Stress modeling."
         ),
@@ -2765,8 +2777,8 @@ elif page == "4 · Stress & Critical Validation":
         (
             "Hybrid augmentation improves the official Dreaddit test modestly: "
             "<strong>Stress F1 rises from 0.741 to 0.753</strong> and recall from "
-            "<strong>0.762 to 0.778</strong>. This improvement does not, by itself, "
-            "prove successful transfer to developer language."
+            "<strong>0.762 to 0.778</strong>. These gains are modest and do not, by themselves, "
+            "demonstrate robust transfer to developer-oriented technical language."
         ),
     )
 
@@ -2941,11 +2953,12 @@ elif page == "4 · Stress & Critical Validation":
         [
             {
                 "chip": "Improvement",
-                "title": "Hybrid transfer is better than the Dreaddit baseline",
+                "title": "Hybrid augmentation improves several developer-domain metrics",
                 "body": (
-                    "On the developer reference set, recall improves from 0.625 to 0.750, "
-                    "balanced accuracy from 0.764 to 0.834, and false-positive rate falls "
-                    "from 9.7% to 8.2%."
+                    "Relative to the Dreaddit-only baseline, recall improves from 0.625 to 0.750, "
+                    "balanced accuracy from 0.764 to 0.834, and false-positive rate falls from 9.7% "
+                    "to 8.2%. However, precision remains only 0.111 and the reference set contains "
+                    "only eight positive Stress cases, so these gains do not demonstrate robust transfer."
                 ),
                 "accent": "#1f8765",
                 "soft": "#e9f5f0",
@@ -3046,7 +3059,7 @@ elif page == "4 · Stress & Critical Validation":
 
     figure_label(
         "4.6",
-        "Final Stress classification on the developer corpus",
+        "Final Stress classification on the technical corpus",
         (
             "Application of the final hybrid classifier to all 2,666 analysis-ready posts."
         ),
@@ -3090,8 +3103,8 @@ elif page == "4 · Stress & Critical Validation":
         (
             "<strong>248 of 2,666 posts (9.30%)</strong> are classified as Stress by the final "
             "model. Because of the observed domain shift and low developer-domain precision, "
-            "9.30% is an analytical prediction rate only and must not be interpreted as "
-            "psychological-Stress prevalence in the developer population."
+            "9.30% is strictly a <strong>model-predicted Stress rate</strong> and must not be interpreted "
+            "as psychological Stress prevalence among developers."
         ),
         accent="#c84c6f",
     )
@@ -3175,7 +3188,7 @@ elif page == "5 · Integrated Analysis":
 
     figure_label(
         "5.1",
-        "Predicted-Stress rate within sentiment classes",
+        "Model-predicted Stress rate within sentiment classes",
         (
             "Stress classification is compared with the negative, neutral and positive "
             "outputs from each sentiment model."
@@ -3263,7 +3276,7 @@ elif page == "5 · Integrated Analysis":
             "Emotion prevalence in Stress vs No-stress classifications",
             (
                 "Descriptive comparison of the emotions most enriched inside the "
-                "predicted-Stress subset."
+                "model-predicted Stress subset."
             ),
         )
 
@@ -3413,7 +3426,7 @@ elif page == "6 · Topic Modeling & Statistics":
         (
             "NMF topics are learned from all 2,666 posts before Stress association is tested. "
             "This prevents the topic structure from being learned only from a small, noisy "
-            "predicted-Stress subset."
+            "model-predicted Stress subset."
         ),
     )
 
@@ -3538,7 +3551,7 @@ elif page == "6 · Topic Modeling & Statistics":
                 "title": "Test Stress only after independent topic learning",
                 "body": (
                     "Topics are learned on all 2,666 posts before Stress association is tested, "
-                    "reducing the risk of constructing topics from the small predicted-Stress subset."
+                    "reducing the risk of constructing topics from the small model-predicted Stress subset."
                 ),
                 "accent": "#1f8765",
                 "soft": "#e9f5f0",
@@ -3548,10 +3561,10 @@ elif page == "6 · Topic Modeling & Statistics":
 
     figure_label(
         "6.1",
-        "Predicted-Stress rate by final NMF topic",
+        "Model-predicted Stress rate by final NMF topic",
         (
             "Each bar shows the percentage of posts classified as Stress inside that topic. "
-            "The vertical reference line is the overall 9.30% predicted-Stress rate."
+            "The vertical reference line is the overall 9.30% model-predicted Stress rate."
         ),
     )
 
@@ -3607,7 +3620,7 @@ elif page == "6 · Topic Modeling & Statistics":
         )
 
         fig.update_layout(
-            xaxis_title="Predicted Stress rate (%)",
+            xaxis_title="Model-predicted Stress rate (%)",
             yaxis_title="",
         )
 
@@ -3628,7 +3641,7 @@ elif page == "6 · Topic Modeling & Statistics":
             "Topic-level result",
             (
                 "<strong>ChatGPT / OpenAI User Experience</strong> has the highest final "
-                "predicted-Stress rate at 14.99%, while <strong>AI Labs / Industry News</strong> "
+                "model-predicted Stress rate at 14.99%, while <strong>AI Labs / Industry News</strong> "
                 "is much lower at 3.69%. The statistical tests below determine whether these "
                 "differences survive multiple-comparison correction."
             ),
@@ -3674,7 +3687,7 @@ elif page == "6 · Topic Modeling & Statistics":
                 "chip": "Higher association",
                 "title": "ChatGPT / OpenAI User Experience",
                 "body": (
-                    "14.99% predicted Stress · RR 1.77× · OR 1.91 · "
+                    "14.99% model-predicted Stress · RR 1.77× · OR 1.91 · "
                     "FDR p = 0.0013."
                 ),
                 "accent": "#c84c6f",
@@ -3684,7 +3697,7 @@ elif page == "6 · Topic Modeling & Statistics":
                 "chip": "Lower association",
                 "title": "AI Labs / Industry News",
                 "body": (
-                    "3.69% predicted Stress · RR 0.37× · OR 0.35 · "
+                    "3.69% model-predicted Stress · RR 0.37× · OR 0.35 · "
                     "FDR p = 0.0013."
                 ),
                 "accent": "#1f8765",
@@ -3719,7 +3732,7 @@ elif page == "6 · Topic Modeling & Statistics":
         (
             "These tests use <strong>model-predicted Stress</strong> as the outcome. Because the Stress "
             "classifier shows developer-domain false positives, some classification uncertainty propagates "
-            "into Topic × Stress associations. Statistical significance therefore supports association with "
+            "into Topic × model-predicted Stress associations. Statistical significance therefore supports association with "
             "the model output, not a clinical Stress effect."
         ),
         accent="#a66d1b",
@@ -3748,7 +3761,7 @@ elif page == "6 · Topic Modeling & Statistics":
         stage_name="Topic modeling and statistical testing",
         method=(
             "TF-IDF + NMF topic modeling over all 2,666 posts; candidate-topic comparison; "
-            "Topic × predicted-Stress chi-square; per-topic Fisher exact tests; "
+            "Topic × model-predicted Stress chi-square; per-topic Fisher exact tests; "
             "Benjamini-Hochberg FDR; relative risk and odds ratio."
         ),
         inputs=[
@@ -3821,7 +3834,7 @@ elif page == "7 · Evidence Explorer":
                     "soft": "#efe8f8",
                 },
                 {
-                    "label": "Predicted Stress",
+                    "label": "Model-predicted Stress",
                     "value": f"{current_stress:,}",
                     "note": pct(current_rate, 2),
                     "accent": "#c84c6f",
@@ -4044,26 +4057,27 @@ elif page == "8 · Final Conclusions":
                 "title": "Fine-grained affect adds information beyond polarity",
                 "body": (
                     "Annoyance, disappointment, confusion, realization and disapproval "
-                    "are more prevalent inside the predicted-Stress subset."
+                    "are more prevalent inside the model-predicted Stress subset."
                 ),
                 "accent": "#c84c6f",
                 "soft": "#f9e8ed",
             },
             {
                 "chip": "Stress model",
-                "title": "Useful signal, but real domain shift remains",
+                "title": "Some discriminative signal remains, but target-domain precision is very limited",
                 "body": (
-                    "Developer-domain recall is 0.750, while Stress precision is 0.111. "
-                    "Technical frustration produces substantial false positives."
+                    "Developer-domain recall is 0.750, but Stress precision is only 0.111. "
+                    "Only eight positive reference cases are evaluable, and technical frustration "
+                    "produces substantial false positives."
                 ),
                 "accent": "#a66d1b",
                 "soft": "#fbf0dc",
             },
             {
                 "chip": "Topics",
-                "title": "Discussion context is associated with predicted Stress",
+                "title": "Discussion context is associated with model-predicted Stress",
                 "body": (
-                    "The Topic × Stress chi-square is significant, but Cramér’s V = 0.103 "
+                    "The Topic × model-predicted Stress chi-square is significant, but Cramér’s V = 0.103 "
                     "shows that the overall effect is small."
                 ),
                 "accent": "#3567b8",
@@ -4073,7 +4087,7 @@ elif page == "8 · Final Conclusions":
                 "chip": "Strongest topic signal",
                 "title": "ChatGPT / OpenAI User Experience stands out",
                 "body": (
-                    "This topic has a 14.99% predicted-Stress rate and RR = 1.77× after "
+                    "This topic has a 14.99% model-predicted Stress rate and RR = 1.77× after "
                     "FDR correction; the result is associative, not causal."
                 ),
                 "accent": "#7849b8",
@@ -4085,13 +4099,13 @@ elif page == "8 · Final Conclusions":
     interpretation(
         "Final answer to the research question",
         (
-            "Developers express broad sentiment, specific emotions and Stress-related language "
-            "as <strong>distinct but connected signals</strong>. Sentiment alone is insufficient "
-            "to identify Stress: most negative posts are not classified as Stress. Fine-grained "
-            "emotions provide additional context, and the frequency of Stress-classified language "
-            "varies across discussion topics. However, the Stress model still exhibits clear "
-            "developer-domain false positives, and the topic effect is statistically significant "
-            "but small."
+            "The collected developer-oriented technical discussions exhibit <strong>distinct but connected "
+            "sentiment, model-predicted emotion-related, and stress-related linguistic signals</strong>. "
+            "Sentiment alone is insufficient to identify model-predicted Stress: most Negative posts are "
+            "not classified as Stress. Predicted emotion labels provide additional descriptive context, "
+            "while model-predicted Stress rates vary across discussion topics. However, the Stress classifier "
+            "has substantial developer-domain false positives and the overall Topic × model-predicted Stress "
+            "association is statistically significant but small."
         ),
         accent="#1f8765",
     )
@@ -4126,7 +4140,7 @@ elif page == "8 · Final Conclusions":
             },
             {
                 "chip": "Cannot claim",
-                "title": "9.30% is not developer psychological-Stress prevalence",
+                "title": "9.30% is not psychological Stress prevalence among developers",
                 "body": (
                     "The Stress classifier has domain-shift false positives and the reference set "
                     "is LLM-assisted with only eight positive cases."
@@ -4138,7 +4152,7 @@ elif page == "8 · Final Conclusions":
                 "chip": "Cannot claim",
                 "title": "Topic associations are not causal effects",
                 "body": (
-                    "The Topic × predicted-Stress association is significant but small "
+                    "The Topic × model-predicted Stress association is significant but small "
                     "(Cramér’s V = 0.103), and does not show that a topic causes Stress."
                 ),
                 "accent": "#a66d1b",
@@ -4161,7 +4175,7 @@ elif page == "8 · Final Conclusions":
     interpretation(
         "Limits",
         (
-            "Predicted Stress is not a diagnosis or prevalence estimate. The developer-domain reference "
+            "Model-predicted Stress is not a diagnosis or prevalence estimate. The developer-domain reference "
             "contains only eight evaluable Stress cases and is not a perfect human clinical gold standard. "
             "Synthetic examples are training augmentation only. Emotion enrichments are descriptive unless "
             "separately tested. Topic associations do not establish causality."
@@ -4173,7 +4187,7 @@ elif page == "8 · Final Conclusions":
         "Recommended continuation",
         (
             "The strongest next step is to build a larger manually annotated developer-Stress benchmark, "
-            "then recalibrate or fine-tune the Stress model on developer language. A second extension would "
+            "then recalibrate or fine-tune the Stress model on developer-oriented technical language. A second extension would "
             "test the emotion enrichments statistically and evaluate more contextual Stress architectures "
             "once reliable domain labels are available."
         ),

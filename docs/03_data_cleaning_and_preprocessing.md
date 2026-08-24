@@ -27,24 +27,39 @@ data/processed/analysis_ready_posts.jsonl
 ## Processing sequence
 
 ```text
-Raw records
-  ↓
-schema harmonization
-  ↓
-text construction
-  ↓
-platform/date standardization
-  ↓
-strict AI relevance
-  ↓
-exact-text deduplication
-  ↓
-minimum text-length rule
-  ↓
-analysis eligibility
-  ↓
-frozen 2,666-post corpus
+5,406 raw collected records
+        ↓
+Schema harmonization + text construction
+        ↓
+Strict AI-relevance filtering
+− 2,680
+        ↓
+2,726 AI-relevant posts
+        ↓
+Exact-text deduplication
+− 32
+        ↓
+2,694 unique AI-relevant posts
+        ↓
+Minimum-length rule (≥ 5 words)
+− 28
+        ↓
+2,666 final analysis-ready posts
 ```
+
+Missing dates are retained and are **not** used as an eligibility criterion.
+
+## Verified sequential audit
+
+| Sequential stage | Remaining records | Removed at this stage |
+|---|---:|---:|
+| Raw collection | 5,406 | — |
+| After strict AI-relevance filtering | 2,726 | 2,680 |
+| After exact-text deduplication | 2,694 | 32 |
+| After minimum-length rule (≥5 words) | 2,666 | 28 |
+| **Total sequential exclusions** | — | **2,740** |
+
+The broader raw diagnostic audit detects **37 exact-text duplicate rows**. These diagnostic indicators overlap: five duplicate rows were already removed by the preceding relevance filter, so only **32** are removed during the sequential deduplication step. The sequential counts above are therefore the correct exclusion funnel.
 
 ## Text fields
 
@@ -52,7 +67,7 @@ frozen 2,666-post corpus
 Preserves the combined original title/body evidence.
 
 ### `text_clean_basic`
-Basic cleaned representation that preserves useful punctuation and negation. Used for contextual inspection and prediction tasks.
+Basic cleaned representation that preserves useful punctuation, case and negation for contextual inspection and prediction tasks.
 
 ### `text_clean_lexical`
 Lowercased lexical representation for TF-IDF, NMF and frequency analysis.
@@ -65,23 +80,14 @@ A source-qualified ID is created so results can be merged safely:
 record_id = source + "::" + source_id
 ```
 
-If a source identifier is unavailable, a stable fallback is generated.
+If a source identifier is unavailable, a stable SHA-256-based fallback identifier is generated.
 
-## Relevance and eligibility
+## Final eligibility rule
 
-The final analysis-eligibility logic requires:
-- strict AI relevance;
-- no exact-text duplicate;
-- usable text;
-- at least five words.
-
-The preprocessing audit contains:
-- **5,406 raw records**
-- **2,726 strict AI-relevant records**
-- **37 exact-text duplicates detected**
-- **2,666 final analysis-ready records**
-
-Some exclusion indicators can overlap; they should not be summed as mutually exclusive causes.
+A record is analysis-ready when it:
+- satisfies strict AI relevance;
+- is not an exact-text duplicate among the remaining relevant records;
+- contains at least five words.
 
 ## Why freeze the corpus?
 

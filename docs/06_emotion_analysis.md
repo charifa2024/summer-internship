@@ -75,4 +75,4 @@ data/results/emotions/goemotions_threshold_strategy_comparison.json
 
 ## Limitation
 
-GoEmotions contains general Reddit language, while the target corpus is technical/developer-oriented. Emotion predictions are therefore exploratory linguistic signals, not verified psychological states.
+GoEmotions contains general Reddit language, while the target corpus is developer-oriented technical. Emotion predictions are therefore exploratory linguistic signals, not verified psychological states.

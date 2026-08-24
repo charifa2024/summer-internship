@@ -1,11 +1,13 @@
-# NLP Analysis of Developer-Oriented Discussions on AI Tools
+# Analysis of Developer-Oriented Discussions on AI Tools
+
+**Sentiment, Emotions, Stress-Related Language, and Topic Modeling in Public Technical Discussions**
 
 **Final internship project — Summer 2026**
 
 This repository contains a reproducible NLP workflow for analysing public developer-oriented discussions about AI tools. The final study separates four analytical questions:
 
 1. **Sentiment** — broad polarity using VADER and a contextual Transformer.
-2. **Emotions** — multi-label emotion signals using GoEmotions.
+2. **Emotions** — multi-label emotion-related signals using GoEmotions.
 3. **Stress-related language** — a dedicated Dreaddit-based classifier with developer-domain critical validation.
 4. **Topics** — NMF discussion themes learned independently on the complete analysis-ready corpus, followed by statistical association with model-predicted Stress.
 
@@ -21,7 +23,18 @@ The project analyses **public technical discourse**. It does not diagnose indivi
 ```text
 5,406 collected public records
         ↓
-Cleaning + relevance filtering + deduplication
+Strict AI-relevance filtering
+− 2,680
+        ↓
+2,726 AI-relevant posts
+        ↓
+Exact-text deduplication
+− 32
+        ↓
+2,694 unique AI-relevant posts
+        ↓
+Minimum length ≥ 5 words
+− 28
         ↓
 2,666 analysis-ready posts
         ↓
@@ -33,22 +46,26 @@ Transformer        TF-IDF + OVR LR    + synthetic augmentation
  │                  │                  │
  └──────────────────┴──────────────────┴────────────────────┘
                          ↓
-              Unified row-level dataset
+               Unified row-level dataset
                          ↓
-          Sentiment × Emotions × Stress
+           Sentiment × Emotions × Stress
                          ↓
-            NMF topics on all 2,666 posts
+             NMF topics on all 2,666 posts
                          ↓
-          Topic × predicted-Stress statistics
+      Topic × model-predicted Stress statistics
                          ↓
-          Streamlit dashboard + final report
+           Streamlit dashboard + final report
 ```
+
+**Cleaning-audit note:** 37 exact-text duplicate rows were detected globally in the raw collection. Five had already been removed by the preceding relevance filter, so **32 duplicates** were removed at the sequential deduplication step.
 
 ## Core verified results
 
 | Component | Final result |
 |---|---|
 | Raw collection | 5,406 records |
+| Strict AI-relevant posts | 2,726 |
+| Unique AI-relevant posts after deduplication | 2,694 |
 | Analysis-ready corpus | 2,666 posts |
 | VADER | 63.80% Positive |
 | Transformer sentiment | 64.03% Neutral |
@@ -60,10 +77,10 @@ Transformer        TF-IDF + OVR LR    + synthetic augmentation
 | Developer-domain Stress recall | 0.7500 |
 | Model-predicted Stress on final corpus | 248 / 2,666 = 9.30% |
 | Final NMF solution | 7 topics |
-| Topic × predicted-Stress | χ²(6)=28.53, p≈0.000075 |
+| Topic × model-predicted Stress | χ²(6)=28.53, p≈0.000075 |
 | Effect size | Cramér's V=0.103 (small) |
 
-**Important:** 9.30% is a **model prediction rate**, not psychological-Stress prevalence.
+**Important:** 9.30% is a **model-prediction rate**, not psychological Stress prevalence. The developer-domain reference set contains only **8 evaluable Stress-positive cases**, and final Stress precision is **0.1111**.
 
 ## Final dashboard pages
 
@@ -118,9 +135,13 @@ Final methodological decision documents are also stored in `docs/`.
 ## Scientific boundaries
 
 - Public posts are not a random sample of all developers.
+- Author profession is not verified for every record.
 - Sentiment and emotion labels are computational predictions.
+- Sentiment conclusions are model-dependent; VADER and the Transformer agree on only 37.62% of posts.
 - The sentiment reference sample is LLM-assisted, not independent human ground truth.
 - The developer-domain Stress reference is LLM-assisted and contains only eight evaluable Stress-positive examples.
-- Synthetic Stress examples are training augmentation only.
+- Synthetic Stress examples are training augmentation only; their modest gains do not demonstrate robust domain transfer.
+- 9.30% is a model-predicted Stress rate, not psychological prevalence.
 - Emotion enrichments are descriptive unless individually tested.
-- Topic association with predicted Stress does not imply causality.
+- Topic × model-predicted Stress association is statistically significant but small (Cramér's V≈0.103).
+- Topic association does not imply causality.

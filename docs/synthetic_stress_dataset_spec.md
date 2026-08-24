@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Augment Dreaddit training with developer-style language to reduce domain mismatch and explicitly teach the distinction:
+Provide developer-style **training augmentation** intended to reduce linguistic mismatch between Dreaddit and technical AI discussions and to explicitly teach the distinction:
 
 > **Negative sentiment ≠ Stress**
 
@@ -80,4 +80,8 @@ The final hybrid model is evaluated separately on:
 - untouched Dreaddit official test data;
 - the developer-domain LLM-assisted reference set.
 
-Synthetic examples do not contribute to final evaluation metrics.
+Synthetic examples do **not** contribute to final evaluation metrics.
+
+## Interpretation boundary
+
+The observed performance gain from augmentation is **modest**. Synthetic data are an experimental training aid and do not constitute validation evidence or prove robust developer-domain transfer.

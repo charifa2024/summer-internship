@@ -12,7 +12,7 @@ TF-IDF unigrams/bigrams
 + threshold 0.50
 ```
 
-Synthetic data are augmentation only.
+Synthetic data are **training augmentation only**.
 
 ## Model-selection principle
 
@@ -21,7 +21,7 @@ Candidate baseline classifiers were compared using training cross-validation:
 - calibrated Linear SVM
 - Complement Naive Bayes
 
-The retained baseline was then evaluated on the untouched official Dreaddit test split.
+The pre-declared selection criterion was Macro-F1, under which Logistic Regression ranked highest. The retained baseline was then evaluated on the untouched official Dreaddit test split.
 
 ## Dreaddit official test
 
@@ -32,7 +32,7 @@ Hybrid model:
 - Stress Recall: 0.7778
 - Stress F1: 0.7533
 
-Synthetic augmentation provides a modest improvement over the Dreaddit-only baseline.
+Synthetic augmentation provides a **modest observed improvement** over the Dreaddit-only baseline. This source-domain gain does not by itself demonstrate robust transfer to developer-oriented technical language.
 
 ## Developer-domain reference evaluation
 
@@ -44,8 +44,8 @@ Synthetic augmentation provides a modest improvement over the Dreaddit-only base
 
 Hybrid:
 - Balanced Accuracy: 0.8342
-- Stress Precision: 0.1111
-- Stress Recall: 0.7500
+- Stress Precision: **0.1111**
+- Stress Recall: **0.7500**
 - Stress F1: 0.1935
 - MCC: 0.2679
 
@@ -57,17 +57,17 @@ Confusion matrix:
 
 ## Critical finding
 
-The model detects 6/8 reference Stress cases but produces 48 false positives. Many errors involve technical frustration or strong complaint language that resembles general-domain distress language.
+The model detects 6 of only 8 reference Stress cases but produces 48 false positives. Technical frustration and strong complaint language frequently resemble general-domain distress patterns.
 
-This is evidence of **domain shift**.
+This is evidence of **domain shift**. Because only eight positive cases are available, positive-class metrics are unstable. The hybrid model improves several target-domain metrics relative to the Dreaddit-only baseline, but the result does **not** establish robust domain transfer.
 
 ## Final corpus
 
 - 2,418 No stress
-- 248 predicted Stress
-- 9.30% model-predicted Stress rate
+- 248 classified as Stress
+- 9.30% **model-predicted Stress rate**
 
-This is not psychological-Stress prevalence.
+This is an exploratory model-prediction rate, not psychological Stress prevalence.
 
 ## Final role in the pipeline
 
@@ -77,5 +77,5 @@ Sentiment
 → Stress & critical validation
 → Integrated analysis
 → NMF topics
-→ Topic × predicted-Stress statistics
+→ Topic × model-predicted Stress statistics
 ```

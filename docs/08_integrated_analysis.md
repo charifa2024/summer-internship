@@ -25,21 +25,21 @@ Integrity checks:
 
 ### VADER
 - Negative posts: 565
-- Predicted Stress among them: 81
+- Model-predicted Stress among them: 81
 - Rate: **14.34%**
 
 ### Transformer
 - Negative posts: 482
-- Predicted Stress among them: 117
+- Model-predicted Stress among them: 117
 - Rate: **24.27%**
 
 Most negative posts are therefore **not** classified as Stress.
 
-## Emotion enrichment in predicted-Stress posts
+## Emotion enrichment in model-predicted Stress posts
 
 Examples:
 
-| Emotion | Predicted-Stress posts | No-stress posts |
+| Emotion | Model-predicted Stress posts | No-stress posts |
 |---|---:|---:|
 | Annoyance | 26.61% | 9.14% |
 | Disappointment | 20.56% | 4.22% |

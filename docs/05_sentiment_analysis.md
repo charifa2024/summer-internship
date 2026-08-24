@@ -2,7 +2,7 @@
 
 ## Objective
 
-Measure broad textual polarity and determine whether different sentiment approaches interpret developer-oriented technical language consistently.
+Measure broad textual polarity and determine whether different sentiment approaches interpret the final developer-oriented technical corpus consistently.
 
 ## Methods
 
@@ -30,7 +30,7 @@ Agreement:
 1,003 / 2,666 = 37.62%
 ```
 
-This disagreement is a major methodological result.
+This low agreement is a major methodological result: the corpus-level sentiment picture is **strongly model-dependent**.
 
 ## LLM-assisted reference evaluation
 
@@ -38,12 +38,12 @@ Reference sample:
 - 150 selected posts
 - 147 evaluable
 
-| Model | Accuracy | Macro F1 |
-|---|---:|---:|
-| VADER | 0.490 | 0.454 |
-| Transformer | 0.510 | 0.510 |
+| Model | Accuracy | Macro F1 | Cohen's κ |
+|---|---:|---:|---:|
+| VADER | 0.490 | 0.454 | 0.230 |
+| Transformer | 0.510 | 0.510 | 0.278 |
 
-The reference annotations are **LLM-assisted**, not independently verified human ground truth.
+The reference annotations are **LLM-assisted**, not independently verified human ground truth. Performance is moderate, so neither method should be treated as a definitive measurement of sentiment.
 
 ## Main outputs
 
@@ -55,8 +55,20 @@ data/results/final_synthesis/negative_sentiment_vs_stress.csv
 
 ## Critical interpretation
 
-The models operationalize sentiment differently:
-- VADER emphasizes lexical polarity;
-- Transformer classification is more contextual.
+VADER and the Transformer operationalize sentiment differently:
+- VADER classifies **63.80%** of the corpus as Positive;
+- the Transformer classifies **64.03%** as Neutral.
 
-No model is treated as absolute ground truth. Both are retained so downstream analysis can show how conclusions depend on sentiment methodology.
+Correct interpretation:
+
+> VADER and the Transformer produce substantially different sentiment distributions. Their 37.62% agreement and moderate LLM-assisted reference performance indicate that sentiment conclusions are model-dependent.
+
+Avoid:
+
+> Developers are mostly positive.
+
+or:
+
+> Developers are mostly neutral.
+
+**Decision:** retain both methods, report their disagreement explicitly, and do not use either sentiment model as a proxy for Stress.

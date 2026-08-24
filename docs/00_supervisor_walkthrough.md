@@ -3,7 +3,7 @@
 **Project:** Summer Internship 2026  
 **Purpose:** Explain the complete final workflow in plain language: what was done, why it was done, how it was evaluated, what was retained, and what the results mean.
 
-## 1. Research question
+## 1. Final research question
 
 > **How do developer-oriented public discussions about AI tools express sentiment, emotions, and stress-related language, and which discussion topics are associated with model-predicted Stress?**
 
@@ -12,32 +12,38 @@ The study analyses public technical discourse. It does not diagnose individuals 
 ## 2. Final pipeline
 
 ```text
-1. Problem definition
+5,406 collected records
         ↓
-2. Data collection — 5,406 records
+Strict AI relevance: −2,680
         ↓
-3. Cleaning, relevance filtering and deduplication
+2,726 relevant posts
         ↓
-4. Frozen corpus — 2,666 posts
+Exact-text deduplication: −32
         ↓
-5. Exploratory data analysis
+2,694 unique relevant posts
         ↓
-6. Sentiment — VADER + Transformer
+Minimum length ≥ 5 words: −28
         ↓
-7. Emotions — GoEmotions multi-label classifier
+2,666 frozen analysis-ready posts
         ↓
-8. Stress — Dreaddit + hybrid augmentation + domain validation
+Sentiment — VADER + Transformer
         ↓
-9. Integrated Sentiment × Emotions × Stress analysis
+Emotions — GoEmotions multi-label classifier
         ↓
-10. NMF topic modeling on all 2,666 posts
+Stress — Dreaddit + synthetic augmentation + domain validation
         ↓
-11. Topic × predicted-Stress statistical tests
+Integrated Sentiment × Emotions × Stress analysis
         ↓
-12. Evidence Explorer + final conclusions
+NMF topic modeling on all 2,666 posts
         ↓
-13. Streamlit dashboard + final report
+Topic × model-predicted Stress statistics
+        ↓
+Evidence Explorer + final conclusions
+        ↓
+Streamlit dashboard + final report
 ```
+
+**Audit note:** 37 duplicate rows were detected globally, but only 32 were removed at the sequential deduplication step because five had already been excluded by relevance filtering.
 
 ## 3. Step-by-step summary
 
@@ -45,14 +51,14 @@ The study analyses public technical discourse. It does not diagnose individuals 
 |---|---|---|---|
 | Problem definition | Define scope and scientific boundaries | Research framing | `docs/01_problem_definition.md` |
 | Collection | Build a multi-source public corpus | Public APIs + documented datasets | 5,406 records |
-| Cleaning | Keep comparable AI-relevant records | Standardization, relevance, deduplication, minimum text length | 2,666 posts |
+| Cleaning | Keep comparable AI-relevant records | Strict relevance → deduplication → minimum length | 2,666 posts |
 | EDA | Understand corpus composition | Descriptive statistics and charts | `data/results/eda/` |
-| Sentiment | Measure broad polarity | VADER + Transformer | 37.62% model agreement |
+| Sentiment | Measure broad polarity | VADER + Transformer | 37.62% agreement; model-dependent result |
 | Emotions | Add specific affective signals | GoEmotions, TF-IDF, OVR Logistic Regression | Micro-F1 0.5213 |
-| Stress | Detect Stress-related language separately | Dreaddit + hybrid augmentation | Final developer-domain recall 0.750, precision 0.111 |
-| Integration | Compare signals on the same posts | One-to-one merge by `record_id` | Negative sentiment ≠ predicted Stress |
+| Stress | Detect Stress-related language separately | Dreaddit + synthetic augmentation | Recall 0.750, precision 0.111 on developer-domain reference |
+| Integration | Compare signals on the same posts | One-to-one merge by `record_id` | Negative sentiment ≠ model-predicted Stress |
 | Topics | Discover discussion context | TF-IDF + NMF, k=4…10 evaluated | 7 topics selected |
-| Statistics | Test Topic × predicted-Stress association | χ², Fisher, BH-FDR, RR, OR, Cramér's V | Significant but small overall effect |
+| Statistics | Test Topic × model-predicted Stress association | χ², Fisher, BH-FDR, RR, OR, Cramér's V | Significant but small overall effect |
 | Dashboard | Present final frozen results | Streamlit + Plotly | Public deployed application |
 
 ## 4. Headline findings
@@ -61,9 +67,9 @@ The study analyses public technical discourse. It does not diagnose individuals 
 - VADER: **63.80% Positive**
 - Transformer: **64.03% Neutral**
 - Agreement: **37.62%**
-- On the LLM-assisted reference sample, Transformer Macro-F1 (**0.510**) was slightly higher than VADER (**0.454**).
+- LLM-assisted reference Macro-F1: VADER **0.454**, Transformer **0.510**
 
-**Decision:** retain both methods because their disagreement is itself an important methodological finding.
+**Decision:** retain both methods. Their disagreement is a methodological finding, and neither method is treated as ground truth.
 
 ### Emotions
 Final model:
@@ -72,12 +78,14 @@ Final model:
 GoEmotions simplified (28 labels)
 → TF-IDF
 → One-vs-Rest Logistic Regression
-→ per-emotion thresholds calibrated on validation data
+→ per-emotion validation-calibrated thresholds
 ```
 
 Official test:
 - Micro-F1: **0.5213**
 - Macro-F1: **0.4438**
+
+Interpret the outputs as **model-predicted emotion-related language**, not verified psychological states.
 
 ### Stress
 Final training:
@@ -88,50 +96,51 @@ Final training:
 = 4,038 training examples
 ```
 
+Synthetic examples are training augmentation only.
+
 Official Dreaddit test:
 - Stress F1: **0.7533**
 - Stress recall: **0.7778**
 
-Developer-domain reference evaluation:
+Developer-domain reference:
 - 596 evaluable posts
 - 588 No stress
-- 8 Stress
+- only 8 Stress
 - TP=6, FP=48, FN=2, TN=540
 - Stress precision: **0.1111**
 - Stress recall: **0.7500**
 - MCC: **0.2679**
 
-**Interpretation:** useful Stress-related signal remains, but technical frustration produces many false positives. Predictions must not be treated as diagnoses.
+**Interpretation:** the hybrid model improves several metrics relative to the Dreaddit-only baseline, but precision remains very low and the positive reference class is extremely small. The observed gains do **not** demonstrate robust target-domain transfer.
 
 Final corpus:
 - **248 / 2,666 = 9.30% model-predicted Stress**
 
-### Integrated analysis
-- VADER-negative → predicted Stress: **81/565 = 14.34%**
-- Transformer-negative → predicted Stress: **117/482 = 24.27%**
+This is an exploratory model-prediction rate, not psychological prevalence.
 
-**Central conclusion:** negative sentiment and Stress are not interchangeable.
+### Integrated analysis
+- VADER-negative → model-predicted Stress: **81/565 = 14.34%**
+- Transformer-negative → model-predicted Stress: **117/482 = 24.27%**
+
+**Central conclusion:** negative sentiment and model-predicted Stress are not interchangeable.
 
 ### Topic modeling and statistics
-NMF topics were learned **independently on all 2,666 posts**, then Stress predictions were analysed by topic.
-
-Seven topics were retained after evaluating k=4…10 using reconstruction, diversity, dominant-topic strength, margin, cluster sizes and interpretability.
+NMF topics were learned **independently on all 2,666 posts**, then model-predicted Stress was analysed by topic.
 
 Overall association:
 - χ²(6)=**28.53**
 - p≈**0.000075**
-- Cramér's V=**0.103** → small effect
+- Cramér's V=**0.103** → **small effect**
 
-FDR-significant topic signals:
+FDR-supported topic signals:
 - **ChatGPT / OpenAI User Experience:** 14.99%, RR=1.77, OR=1.91
 - **AI Labs / Industry News:** 3.69%, RR=0.37, OR=0.35
 
-The absolute lowest raw predicted-Stress rate is **VS Code / GitHub Copilot Technical Issues: 3.45%**, but its individual lower association does not survive FDR correction.
+The lowest raw rate is **VS Code / GitHub Copilot Technical Issues: 3.45%**, but its individual lower association does not survive FDR correction.
 
 ## 5. Final dashboard
 
-Live:
-https://summer-internship-dashboard.streamlit.app/
+Live: https://summer-internship-dashboard.streamlit.app/
 
 Pages:
 1. Executive Overview
@@ -146,10 +155,15 @@ Pages:
 
 ## 6. Scientific boundaries to defend
 
-- Predicted Stress is not a clinical diagnosis.
+- Results describe **developer-oriented public technical discussions**, not a verified population of developers.
+- Sentiment is model-dependent.
+- Emotion labels are predictions, not verified emotional states.
+- Model-predicted Stress is not a diagnosis.
 - 9.30% is not Stress prevalence among developers.
-- LLM-assisted annotations are reference annotations, not human clinical ground truth.
-- Synthetic data are used only for training augmentation.
+- The developer-domain Stress reference contains only eight evaluable positive cases.
+- LLM-assisted annotations are reference annotations, not independent human or clinical ground truth.
+- Synthetic data are used only for training augmentation; the gain is modest and does not prove robust transfer.
 - Emotion enrichments are descriptive unless individually tested.
+- Topic × model-predicted Stress is statistically significant but the overall effect is small.
 - Topic association does not imply causality.
 - Sampling and source imbalance limit population-level generalization.
